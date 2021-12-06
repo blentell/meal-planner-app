@@ -1,0 +1,17 @@
+.homePage{
+  height: 80.3vh;
+  background-color: #97e7f5;
+}
+.tasty{
+ margin-top: 20px;
+ width: 90%;
+ height: 50%;
+}
+
+.home {
+  display: flex;  
+  justify-content: center; 
+}
+.text {
+  text-align: center;
+}
