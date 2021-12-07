@@ -1,0 +1,10 @@
+.main {
+  height: 79.3vh;
+  margin-top: 10px;
+  background-color: #97e7f5;
+
+}
+.calendar {
+  display: flex; 
+  justify-content: center;
+}
