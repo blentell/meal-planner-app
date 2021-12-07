@@ -32,13 +32,11 @@ function Signin({ setUser }) {
 	async function handleSubmit(e) {
 		e.preventDefault();
 		try {
-			//|| "https://term-2-basic-backend2.herokuapp.com/api/users/login"
-			// process.env.AXIOS_LOGIN_CALL
+			
 			let payload = await axios.post("http://localhost:3001/api/users/login", {
 				email,
 				password,
 			});
-			console.log(process.env);
 			window.localStorage.setItem("jwtToken", payload.data.payload);
 
 			let decodedToken = jwtDecode(payload.data.payload);

@@ -8,20 +8,50 @@ import Signin from "./components/signin/Signin";
 import Footer from "./components/footer/Footer";
 import Calendar from "./components/calendar/CalendarWidget";
 import Home from "./components/home/Home";
-
 import Nav from "./components/navbar/Navbar";
+import Meals from "./components/meals/Meals";
+
 import PrivateRoute from "./components/privateRoute/PrivateRoute";
+import { SearchContext, MealContext } from "./context/mealContext";
+// import Search from "./components/search/Search";
 
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
 function App() {
 	const [user, setUser] = useState(null);
-	const [isSearch, setIsSearch] = useState(false);
-	const [search, setSearch] = useState("");
-	const [data, setData] = useState([]);
-	const [error, setError] = useState("");
+	// const [isSearch, setIsSearch] = useState(false);
+	// const [search, setSearch] = useState("");
+	// const [data, setData] = useState([]);
+	// const [error, setError] = useState("");
 
+
+  const [searchValue, setSearchValue] = useState("");
+  const [results, setResults] = useState([]);
+  const [mealSelected, setMealSelected] = useState(null);
+  const [searching, setSearching] = useState(false);
+
+  async function handleSearchChange(inputValue) {
+    setSearchValue(inputValue);
+    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${inputValue}`);
+
+    const data = await response.json();
+    setResults(data.meals || []);
+    setSearching(true);
+  }
+  
+  function handleMealSelected(mealSelected) {
+    setMealSelected(mealSelected);
+    setSearching(false);
+	}
+
+  const searchContextValue = {
+    handleMealSelected,
+    handleSearchChange,
+    title: searchValue,
+    results,
+    searching
+  }
 	
 	useEffect(() => {
 		let jwtToken = window.localStorage.getItem("jwtToken");
@@ -46,39 +76,39 @@ function App() {
 		<>
 			<ToastContainer theme="colored" />
 			<Router>
-				<Nav
-					user={user}
-					setUser={setUser}
-					setIsSearch={setIsSearch}
-					setSearch={setSearch}
-				/>
+				<SearchContext.Provider value={searchContextValue}>
+					<Nav
+						user={user}
+						setUser={setUser}
+						// setIsSearch={setIsSearch}
+						// setSearch={setSearch}
+					/>
+				</SearchContext.Provider>
+
 				<Routes>
 					<Route
 						path="/fetch-movie/:name"
-						element={
-							<PrivateRoute>
-								{/* <Movie /> */}
-							</PrivateRoute>
-						}
+						element={<PrivateRoute>{/* <Movie /> */}</PrivateRoute>}
 					/>
 					<Route
 						path="/protected-home/"
 						element={
 							<PrivateRoute>
-								<Calendar setUser={setUser}/>
-								{/* <Movies search={search} data={data} setUser={setUser} /> */}
+								<Calendar setUser={setUser} />
 							</PrivateRoute>
 						}
 					/>
 					<Route
-						path="/protected-home/favorites"
+						path="/protected-home/Meals"
 						element={
+								<MealContext.Provider value={mealSelected}>
 							<PrivateRoute>
-								{/* <Favorites /> */}
+									<Meals />
 							</PrivateRoute>
+								</MealContext.Provider>
 						}
 					/>
-					{/* <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute> */}
+
 					<Route path="/sign-up" element={<Signup />} />
 					<Route path="/sign-in" element={<Signin setUser={setUser} />} />
 					<Route path="/" element={<Home />} />

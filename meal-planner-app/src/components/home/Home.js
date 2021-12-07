@@ -24,6 +24,9 @@ function Home() {
 			<div>
 				<h1 className="text">Plan out your daily meals!</h1>
 			</div>
+			<div className="logoContainer">
+				<img className="logo" src="../../images/Meal-App-Logo.jpg"></img>
+			</div>
 		</div>
 	);
 }

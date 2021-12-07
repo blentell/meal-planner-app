@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
+import { SearchContext } from "../../context/mealContext";
+import SearchList from "../search/SearchList";
+
 import "./Navbar.css"
 function Nav({ user, setUser, setIsSearch, setSearch }) {
 	let linkTitle1 = user ? user.username : "Sign up";
@@ -11,19 +14,20 @@ function Nav({ user, setUser, setIsSearch, setSearch }) {
 	let linkTitle4 = user ? "Meals" : "";
 	let link4 = user ? "/protected-home/meals" : "/sign-in";
 	let logoutButton = user ? logout : () => { };
+	const { title, handleSearchChange, searching } = useContext(SearchContext);
 	
-	async function handleSearchMovie() {
-		setIsSearch(true);
-	}
+	// async function handleSearchMeals() {
+	// 	setIsSearch(true);
+	// }
 
 	function logout() {
 		setUser(null);
 		window.localStorage.removeItem("jwtToken");
 	}
-	async function handleOnChange(e) {
-		e.preventDefault();
-		setSearch(e.target.value);
-	}
+	// async function handleOnChange(e) {
+	// 	e.preventDefault();
+	// 	setSearch(e.target.value);
+	// }
 
 	return (
 		<nav className="navbar">
@@ -62,18 +66,20 @@ function Nav({ user, setUser, setIsSearch, setSearch }) {
 					<input
 						className="search-form-control"
 						name="search"
-						placeholder="Search"
+						// placeholder="Search"
 						aria-label="Search"
-						onChange={handleOnChange}
+						onChange={(e) => handleSearchChange(e.target.value)}
 						style={user ? { visibility: "visible" } : { visibility: "hidden" }}
 					/>
-					<button
+					{title !== "" && searching && <SearchList />}
+
+					{/* <button
 						className="search-btn"
-						onClick={handleSearchMovie}
+						onClick={handleSearchMeals}
 						style={user ? { visibility: "visible" } : { visibility: "hidden" }}
 					>
 						Search
-					</button>
+					</button> */}
 				</div>
 			</div>
 		</nav>

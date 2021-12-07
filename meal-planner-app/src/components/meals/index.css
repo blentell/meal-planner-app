@@ -1,0 +1,26 @@
+.meal-Info {
+  font-size: 20px;
+  display: flex;
+
+}
+.info-section label {
+  color: rgba(0, 0, 0, 0.5);
+  margin: 5px;
+
+}
+
+.info-section span {
+  font-weight: bold;
+  margin: 5px;
+
+}
+.mealImg {
+  /* height: 250px; */
+  width: 50%;
+}
+.meals {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
