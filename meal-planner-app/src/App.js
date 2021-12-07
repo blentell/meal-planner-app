@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import axios from "axios";
 import { ToastContainer } from "react-toastify";
 import jwtDecode from "jwt-decode";
 import Signup from "./components/signup/Signup";
@@ -13,20 +12,13 @@ import Meals from "./components/meals/Meals";
 
 import PrivateRoute from "./components/privateRoute/PrivateRoute";
 import { SearchContext, MealContext } from "./context/mealContext";
-// import Search from "./components/search/Search";
 
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
 function App() {
+	const [searchValue, setSearchValue] = useState("");
 	const [user, setUser] = useState(null);
-	// const [isSearch, setIsSearch] = useState(false);
-	// const [search, setSearch] = useState("");
-	// const [data, setData] = useState([]);
-	// const [error, setError] = useState("");
-
-
-  const [searchValue, setSearchValue] = useState("");
   const [results, setResults] = useState([]);
   const [mealSelected, setMealSelected] = useState(null);
   const [searching, setSearching] = useState(false);
@@ -37,12 +29,12 @@ function App() {
 
     const data = await response.json();
     setResults(data.meals || []);
-    setSearching(true);
+		setSearching(true);		
   }
   
-  function handleMealSelected(mealSelected) {
-    setMealSelected(mealSelected);
-    setSearching(false);
+	function handleMealSelected(mealSelected) {
+		setMealSelected(mealSelected);
+		setSearching(false);
 	}
 
   const searchContextValue = {
@@ -80,8 +72,7 @@ function App() {
 					<Nav
 						user={user}
 						setUser={setUser}
-						// setIsSearch={setIsSearch}
-						// setSearch={setSearch}
+						searchValue={searchValue}
 					/>
 				</SearchContext.Provider>
 
