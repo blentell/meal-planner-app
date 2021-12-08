@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, {useContext } from "react";
 import { Link } from "react-router-dom";
 import { SearchContext } from "../../context/mealContext";
 import SearchList from "../search/SearchList";
 
 import "./Navbar.css"
-function Nav({ user, setUser, setIsSearch, setSearch }) {
+function Nav({ user, setUser}) {
 	let linkTitle1 = user ? user.username : "Sign up";
 	let link1 = user ? "/profile" : "/sign-up";
 	let linkTitle2 = user ? "Logout" : "Sign in";
@@ -16,19 +16,12 @@ function Nav({ user, setUser, setIsSearch, setSearch }) {
 	let logoutButton = user ? logout : () => { };
 	const { title, handleSearchChange, searching } = useContext(SearchContext);
 	
-	// async function handleSearchMeals() {
-	// 	setIsSearch(true);
-	// }
 
 	function logout() {
 		setUser(null);
 		window.localStorage.removeItem("jwtToken");
 	}
-	// async function handleOnChange(e) {
-	// 	e.preventDefault();
-	// 	setSearch(e.target.value);
-	// }
-
+	
 	return (
 		<nav className="navbar">
 			<div className="container">
@@ -66,20 +59,12 @@ function Nav({ user, setUser, setIsSearch, setSearch }) {
 					<input
 						className="search-form-control"
 						name="search"
-						// placeholder="Search"
+						placeholder="Search"
 						aria-label="Search"
 						onChange={(e) => handleSearchChange(e.target.value)}
 						style={user ? { visibility: "visible" } : { visibility: "hidden" }}
 					/>
 					{title !== "" && searching && <SearchList />}
-
-					{/* <button
-						className="search-btn"
-						onClick={handleSearchMeals}
-						style={user ? { visibility: "visible" } : { visibility: "hidden" }}
-					>
-						Search
-					</button> */}
 				</div>
 			</div>
 		</nav>

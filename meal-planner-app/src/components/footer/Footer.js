@@ -1,16 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 import "./Footer.css";
-function Footer({ user, setUser, setIsSearch, setSearch }) {
-	let logoutButton = user ? logout : () => {};
-
-
-	function logout() {
-		setUser(null);
-		window.localStorage.removeItem("jwtToken");
-	}
-
-
+function Footer() {
 	return (
 		<nav className="footer">
 			<div className="footerContainer">

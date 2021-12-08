@@ -3,7 +3,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-import jwtDecode from "jwt-decode";
+// import jwtDecode from "jwt-decode";
 import FirstNameHooks from "../../hooks/FirstNameHooks";
 import LastNameHooks from "../../hooks/LastNameHooks";
 import UsernameHooks from "../../hooks/UsernameHooks";
@@ -52,9 +52,7 @@ function Signup() {
 	async function handleSubmit(e) {
 		e.preventDefault();
 		try {
-			//	process.env_AXIOS_CREATEUSER_CALL ||
-			//		"https://term-2-basic-backend2.herokuapp.com/api/users/create-users"
-			let payload = await axios.post(
+			await axios.post(
 				"http://localhost:3001/api/users/create-user",
 				{
 					firstName,
@@ -74,7 +72,6 @@ function Signup() {
 				progress: undefined,
 			});
 		} catch (e) {
-			// console.log(e.response);
 			toast.error(e.response.data.error);
 		}
 	}
@@ -119,7 +116,6 @@ function Signup() {
 							id="username"
 							placeholder="username"
 							onChange={handleUsernameOnChange}
-							// onFocus={() => setOnFocus2(true)}
 							onBlur={() => setOnBlur2(true)}
 						/>
 						<label htmlFor="floatingInput">Username</label>
