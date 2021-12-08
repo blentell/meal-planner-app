@@ -3,10 +3,20 @@ import { MealContext } from "../../context/mealContext";
 import "./index.css";
 function Meals() {
 	const mealSelected = useContext(MealContext);
-  const { strMeal, strMeasure1, strMealThumb, strIngredient1, strCategory } =
+  const { strMeasure1 } =
 		useContext(MealContext);
-  console.log("mealSelected: ", mealSelected)
-  console.log("component: ", strMeasure1)
+  // console.log("mealSelected: ", mealSelected)
+  // console.log("component: ", strMeasure1)
+  function ingredientList() {
+    let ingredientAmount = [];
+    let ingredientType = [];
+    for (let i = 0; i < mealSelected.length; i++){
+      ingredientAmount = mealSelected.strMeasure[i + 1];
+      ingredientType = mealSelected.strIngredient[i + 1];
+      console.log(ingredientAmount)
+    }
+  }
+  
 	return (
 		<div className="recipe">
 			<div className="meals">
