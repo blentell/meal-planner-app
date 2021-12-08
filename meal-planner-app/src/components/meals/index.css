@@ -1,7 +1,7 @@
 .meal-Info {
   font-size: 20px;
   display: flex;
-
+  margin-left: 15px;
 }
 .info-section label {
   color: rgba(0, 0, 0, 0.5);
@@ -21,6 +21,16 @@
 .meals {
   display: flex;
   flex-direction: column;
-  align-items: center;
-
+  align-items: center;  
+}
+.list{
+list-style-type: none;
+}
+.recipe{
+  display: flex;
+  flex-direction: column;
+    align-items: center;  
+}
+.instructions{
+  margin: 15px;
 }

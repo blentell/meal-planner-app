@@ -8,7 +8,7 @@ function Meals() {
   console.log("mealSelected: ", mealSelected)
   console.log("component: ", strMeasure1)
 	return (
-		<div>
+		<div className="recipe">
 			<div className="meals">
 				<img
 					className="mealImg"
@@ -23,7 +23,7 @@ function Meals() {
 			</div>
 			<div className="info-section">
 				<label htmlFor="">Ingredients</label>
-				<ul>
+				<ul className="list">
 					<li>
 						{mealSelected.strMeasure1} {mealSelected.strIngredient1}
 					</li>
@@ -33,26 +33,60 @@ function Meals() {
 					<li>
 						{mealSelected.strMeasure3} {mealSelected.strIngredient3}
 					</li>
-          <li>{mealSelected.strMeasure4} {mealSelected.strIngredient4}</li>
-					<li>{mealSelected.strMeasure5} {mealSelected.strIngredient5}</li>
-					<li>{mealSelected.strMeasure6} {mealSelected.strIngredient6}</li>
-					<li>{mealSelected.strMeasure7} {mealSelected.strIngredient7}</li>
-					<li>{mealSelected.strMeasure8} {mealSelected.strIngredient8}</li>
-					<li>{mealSelected.strMeasure9} {mealSelected.strIngredient9}</li>
-					<li>{mealSelected.strMeasure10} {mealSelected.strIngredient10}</li>
-					<li>{mealSelected.strMeasure11} {mealSelected.strIngredient11}</li>
-					<li>{mealSelected.strMeasure12} {mealSelected.strIngredient12}</li>
-					<li>{mealSelected.strMeasure13} {mealSelected.strIngredient13}</li>
-					<li>{mealSelected.strMeasure14} {mealSelected.strIngredient14}</li>
-					<li>{mealSelected.strMeasure15} {mealSelected.strIngredient15}</li>
-					<li>{mealSelected.strMeasure16} {mealSelected.strIngredient16}</li>
-					<li>{mealSelected.strMeasure17} {mealSelected.strIngredient17}</li>
-					<li>{mealSelected.strMeasure18} {mealSelected.strIngredient18}</li>
-					<li>{mealSelected.strMeasure19} {mealSelected.strIngredient19}</li>
-					<li>{mealSelected.strMeasure20} {mealSelected.strIngredient20}</li>
+					<li>
+						{mealSelected.strMeasure4} {mealSelected.strIngredient4}
+					</li>
+					<li>
+						{mealSelected.strMeasure5} {mealSelected.strIngredient5}
+					</li>
+					<li>
+						{mealSelected.strMeasure6} {mealSelected.strIngredient6}
+					</li>
+					<li>
+						{mealSelected.strMeasure7} {mealSelected.strIngredient7}
+					</li>
+					<li>
+						{mealSelected.strMeasure8} {mealSelected.strIngredient8}
+					</li>
+					<li>
+						{mealSelected.strMeasure9} {mealSelected.strIngredient9}
+					</li>
+					<li>
+						{mealSelected.strMeasure10} {mealSelected.strIngredient10}
+					</li>
+					<li>
+						{mealSelected.strMeasure11} {mealSelected.strIngredient11}
+					</li>
+					<li>
+						{mealSelected.strMeasure12} {mealSelected.strIngredient12}
+					</li>
+					<li>
+						{mealSelected.strMeasure13} {mealSelected.strIngredient13}
+					</li>
+					<li>
+						{mealSelected.strMeasure14} {mealSelected.strIngredient14}
+					</li>
+					<li>
+						{mealSelected.strMeasure15} {mealSelected.strIngredient15}
+					</li>
+					<li>
+						{mealSelected.strMeasure16} {mealSelected.strIngredient16}
+					</li>
+					<li>
+						{mealSelected.strMeasure17} {mealSelected.strIngredient17}
+					</li>
+					<li>
+						{mealSelected.strMeasure18} {mealSelected.strIngredient18}
+					</li>
+					<li>
+						{mealSelected.strMeasure19} {mealSelected.strIngredient19}
+					</li>
+					<li>
+						{mealSelected.strMeasure20} {mealSelected.strIngredient20}
+					</li>
 				</ul>
 			</div>
-			<div className="info-section">
+			<div className="info-section instructions">
 				<label htmlFor="">Instructions</label>
 				<span>{mealSelected.strInstructions}</span>
 			</div>
