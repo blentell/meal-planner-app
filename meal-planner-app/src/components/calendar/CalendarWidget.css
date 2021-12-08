@@ -7,3 +7,17 @@
   display: flex; 
   justify-content: center;
 }
+.scheduleImg{
+  height: 30px;
+  margin-right: 10px;
+}
+.dateInput{
+  width: 120px;
+  margin-left: 10px;
+}
+span{
+  font-size: 20px;
+}
+.delete{
+  margin-right: 10px;  
+}

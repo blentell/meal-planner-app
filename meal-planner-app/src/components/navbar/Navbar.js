@@ -9,9 +9,9 @@ function Nav({ user, setUser}) {
 	let link1 = user ? "/profile" : "/sign-up";
 	let linkTitle2 = user ? "Logout" : "Sign in";
 	let link2 = user ? "/" : "/sign-in";
-	let linkTitle3 = user ? "Calendar" : "";
+	let linkTitle3 = user ? "Schedule" : "";
 	let link3 = user ? "/protected-home" : "/sign-in";
-	let linkTitle4 = user ? "Meals" : "";
+	let linkTitle4 = user ? "Recipes" : "";
 	let link4 = user ? "/protected-home/meals" : "/sign-in";
 	let logoutButton = user ? logout : () => { };
 	const { title, handleSearchChange, searching } = useContext(SearchContext);

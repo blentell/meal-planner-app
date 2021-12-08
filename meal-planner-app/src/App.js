@@ -20,10 +20,11 @@ function App() {
 	const [searchValue, setSearchValue] = useState("");
 	const [user, setUser] = useState(null);
   const [results, setResults] = useState([]);
-  const [mealSelected, setMealSelected] = useState(null);
+  const [mealSelected, setMealSelected] = useState("");
   const [searching, setSearching] = useState(false);
 
-  async function handleSearchChange(inputValue) {
+	async function handleSearchChange(inputValue) {
+		
     setSearchValue(inputValue);
     const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${inputValue}`);
 
@@ -33,18 +34,18 @@ function App() {
   }
   
 	function handleMealSelected(mealSelected) {
-		setMealSelected(mealSelected);
+		setMealSelected(mealSelected);		
 		setSearching(false);
 	}
+
 
   const searchContextValue = {
     handleMealSelected,
     handleSearchChange,
-    title: searchValue,
     results,
     searching
   }
-	
+
 	useEffect(() => {
 		let jwtToken = window.localStorage.getItem("jwtToken");
 
@@ -69,11 +70,7 @@ function App() {
 			<ToastContainer theme="colored" />
 			<Router>
 				<SearchContext.Provider value={searchContextValue}>
-					<Nav
-						user={user}
-						setUser={setUser}
-						searchValue={searchValue}
-					/>
+					<Nav user={user} setUser={setUser} />
 				</SearchContext.Provider>
 
 				<Routes>
@@ -84,19 +81,23 @@ function App() {
 					<Route
 						path="/protected-home/"
 						element={
-							<PrivateRoute>
-								<Calendar setUser={setUser} />
-							</PrivateRoute>
+							<MealContext.Provider value={mealSelected}>
+								<PrivateRoute>
+									<Calendar
+										setUser={setUser}										
+									/>
+								</PrivateRoute>
+							</MealContext.Provider>
 						}
 					/>
 					<Route
 						path="/protected-home/Meals"
 						element={
-								<MealContext.Provider value={mealSelected}>
-							<PrivateRoute>
+							<MealContext.Provider value={mealSelected}>
+								<PrivateRoute>
 									<Meals />
-							</PrivateRoute>
-								</MealContext.Provider>
+								</PrivateRoute>
+							</MealContext.Provider>
 						}
 					/>
 

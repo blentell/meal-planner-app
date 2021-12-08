@@ -3,20 +3,26 @@ import { MealContext } from "../../context/mealContext";
 import "./index.css";
 function Meals() {
 	const mealSelected = useContext(MealContext);
-  const { strMeasure1 } =
-		useContext(MealContext);
-  // console.log("mealSelected: ", mealSelected)
-  // console.log("component: ", strMeasure1)
-  function ingredientList() {
-    let ingredientAmount = [];
-    let ingredientType = [];
-    for (let i = 0; i < mealSelected.length; i++){
-      ingredientAmount = mealSelected.strMeasure[i + 1];
-      ingredientType = mealSelected.strIngredient[i + 1];
-      console.log(ingredientAmount)
-    }
-  }
-  
+	const { strMeasure1 } = useContext(MealContext);
+// Trying to find a better way to iterate thru the ingredients//
+	//console.log(Object.keys(mealSelected).length)
+	// function ingredientList() {
+	// 	let ingredientAmount = [];
+	// 	let ingredientType = [];
+	// 	// console.log("1", Object.keys(mealSelected),Object.values(mealSelected));
+	// 	for (let i = 8; i < 28; i++) {
+	// 		ingredientAmount.push(Object.keys(mealSelected)[i + 1]);
+	// 		ingredientType.push(Object.values(mealSelected)[i + 1]);
+	// 	}
+	// 	for (let j = 28; j < 48; j++) {
+	// 		ingredientAmount.push(Object.keys(mealSelected)[j + 1]);
+	// 		ingredientType.push(Object.values(mealSelected)[j + 1]);
+	// 	}
+	// 	console.log(ingredientAmount);
+	// 	console.log(ingredientType);
+	// }
+
+	// ingredientList();
 	return (
 		<div className="recipe">
 			<div className="meals">

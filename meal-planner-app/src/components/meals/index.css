@@ -29,8 +29,10 @@ list-style-type: none;
 .recipe{
   display: flex;
   flex-direction: column;
-    align-items: center;  
+    align-items: center; 
 }
 .instructions{
   margin: 15px;
+  min-height: 225px; 
+
 }
