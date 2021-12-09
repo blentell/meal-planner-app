@@ -7,7 +7,25 @@ let newArray = [];
 function CalendarWidget() {
 	const mealSelected = useContext(MealContext);
 	//const { strMeal } = useContext(MealContext);
-	
+  function setMeal() {
+    return (
+      <div className="main">
+      <div className="calendar">
+        <button type="button" className="delete">
+          Delete
+        </button>
+        <img
+          className="scheduleImg"
+          src={`${mealSelected.strMealThumb}/preview`}
+        ></img>
+        {mealSelected.strMeal}
+        <div>
+          <input className="dateInput" type="date"></input>
+        </div>
+      </div>
+    </div>
+    )
+  }
   console.log(mealSelected.strMeal);
 	return (
 		<div className="main">
@@ -25,7 +43,6 @@ function CalendarWidget() {
 				<div>
 					<input className="dateInput" type="date"></input>
 				</div>
-				{/* <Calendar onChange={dateClick} /> */}
 			</div>
 		</div>
 	);

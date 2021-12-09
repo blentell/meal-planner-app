@@ -23,8 +23,7 @@ function App() {
   const [mealSelected, setMealSelected] = useState("");
   const [searching, setSearching] = useState(false);
 
-	async function handleSearchChange(inputValue) {
-		
+	async function handleSearchChange(inputValue) {		
     setSearchValue(inputValue);
     const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${inputValue}`);
 
@@ -34,16 +33,23 @@ function App() {
   }
   
 	function handleMealSelected(mealSelected) {
-		setMealSelected(mealSelected);		
+		setMealSelected(mealSelected);
+		let selectedMeal = window.localStorage.setItem(
+			"selectedMeal",
+			mealSelected
+		);
+		
 		setSearching(false);
 	}
-
+// 	useEffect(() => {
+// let selectedMeal = window.localStorage.getItem("selectedMeal")
+// 	}, []);
 
   const searchContextValue = {
     handleMealSelected,
     handleSearchChange,
     results,
-    searching
+		searching,
   }
 
 	useEffect(() => {
