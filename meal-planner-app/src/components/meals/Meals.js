@@ -3,7 +3,8 @@ import { MealContext } from "../../context/mealContext";
 import "./index.css";
 function Meals() {
 	const mealSelected = useContext(MealContext);
-	const { strMeasure1 } = useContext(MealContext);
+	// const { strMeasure1 } = useContext(MealContext);
+	// console.log(mealSelected)
 // Trying to find a better way to iterate thru the ingredients//
 	//console.log(Object.keys(mealSelected).length)
 	// function ingredientList() {

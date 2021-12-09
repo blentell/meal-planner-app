@@ -10,29 +10,23 @@
 
 .scheduleImg{
   height: 30px;
-  margin-right: 10px;
+  margin-right: 5px;
 }
 .title{
-  /* display: block; */
-  align-self: center;
-  width: 100px;
+  width: 200px;
+  margin-right: 5px;
+  text-align: left;
+  font-size: 12px;
 }
-.inputDiv{
-  display: inline;
-  /* position: relative; */
-  justify-content: right;
-}
+
 .dateInput{    
-  width: 80px;
-  font-size: .55rem;
-  /* margin-left: 10px;   */
+  width: 77px;
+  font-size: .5rem;
   margin-right: 5px;  
 }
-span{
-  font-size: 20px;
-}
+
 .delete{
-  margin-right: 10px; 
+  margin-right: 5px; 
   justify-self: left; 
   margin-left: 5px;
 }
