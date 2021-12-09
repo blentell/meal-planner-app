@@ -3,23 +3,19 @@ import axios from "axios";
 import jwtDecode from "jwt-decode";
 import CheckToken from "../../hooks/CheckToken";
 import { useNavigate } from "react-router-dom";
-// import Calendar from "react-calendar";
-// import "../../../node_modules/react-calendar/dist/Calendar.css";
 import "./CalendarWidget.css";
-// import { MealContext } from "../../context/mealContext";
 
 function CalendarWidget() {
-  // const mealSelected = useContext(MealContext);
-  	const { checkJwtToken } = CheckToken();
+  const { checkJwtToken } = CheckToken();
   const navigate = useNavigate();
   const [meals, setMeals] = useState([]);
-  
-	//const { strMeal } = useContext(MealContext);
-
-  
-	useEffect(async () => {
-		await getMeals();
-	}, []);
+    
+	useEffect(
+		() => {
+      getMeals();
+		},
+		[]
+	);
 // getMeals()
 	async function getMeals() {
 		try {
@@ -31,7 +27,7 @@ function CalendarWidget() {
 				},
       });
       console.log("payload: ", payload.data.payload)
-			setMeals(payload.data.payload);
+      setMeals(payload.data.payload);      
 		} catch (e) {
 			console.log(e);
 		}
@@ -72,21 +68,30 @@ function CalendarWidget() {
 		<div className="main">
       {meals.map((item) => {
         return (
-          <div className="calendar">
-            <button type="button" onClick={()=>deleteMeals(item._id)}className="delete">
-              Delete
-            </button>
-            <img
-              className="scheduleImg"
-              src={`${item.mealPicture}/preview`}
-            ></img>
-            {item.mealTitle}
-
-            <div>
-              <input className="dateInput" type="date"></input>
-            </div>
-          </div>
-        );
+					<>
+						<div className="calendar">
+							<div className="buttonDiv">
+								<button
+									type="button"
+									onClick={() => deleteMeals(item._id)}
+									className="delete"
+								>
+									Delete
+								</button>
+							</div>
+							<div className="imgDiv">
+								<img
+									className="scheduleImg"
+									src={`${item.mealPicture}/preview`}
+								></img>
+							</div>
+							<div className="title">{item.mealTitle}</div>
+						<div className="inputDiv">
+							<input className="dateInput" type="date"></input>
+						</div>
+						</div>
+					</>
+				);
 			})}
 		</div>
 	);

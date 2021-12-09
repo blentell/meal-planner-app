@@ -4,20 +4,35 @@
   background-color: #97e7f5;
 }
 .calendar {
-  display: flex; 
-  justify-content: center;
+  display: flex;
+  width: 100%;
 }
+
 .scheduleImg{
   height: 30px;
   margin-right: 10px;
 }
-.dateInput{
-  width: 120px;
-  margin-left: 10px;
+.title{
+  /* display: block; */
+  align-self: center;
+  width: 100px;
+}
+.inputDiv{
+  display: inline;
+  /* position: relative; */
+  justify-content: right;
+}
+.dateInput{    
+  width: 80px;
+  font-size: .55rem;
+  /* margin-left: 10px;   */
+  margin-right: 5px;  
 }
 span{
   font-size: 20px;
 }
 .delete{
-  margin-right: 10px;  
+  margin-right: 10px; 
+  justify-self: left; 
+  margin-left: 5px;
 }
