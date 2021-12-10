@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 import CheckToken from "../../hooks/CheckToken";
@@ -9,7 +9,8 @@ function CalendarWidget() {
 	const { checkJwtToken } = CheckToken();
 	const navigate = useNavigate();
 	const [meals, setMeals] = useState([]);
-  const inputEl = useRef(null);
+  const now = new Date();
+
 
 	async function getMeals() {
 		try {
@@ -20,7 +21,9 @@ function CalendarWidget() {
 					authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
 				},
 			});
-			// console.log("payload: ", payload.data.payload);
+      console.log("payload: ", payload.data.payload);
+      
+      // payload.data.payload[0].mealDate.toString().split("T")[0];
 			setMeals(payload.data.payload);
 		} catch (e) {
 			console.log(e);
@@ -45,16 +48,36 @@ function CalendarWidget() {
 			let filteredMealArray = newMeal.filter(
 				(item) => item._id !== payload.data.payload._id
 			);
-			// console.log("deletePayload: ", payload.data.payload);
+			//console.log("deletePayload: ", payload.data.payload);
 			setMeals(filteredMealArray);
 		} catch (e) {
 			console.log(e);
 		}
-	}
+  }
+  
+  async function updateMeal(mealID) {
+    	try {
+				let url = `http://localhost:3001/api/meals/update-meal/${mealID}`;
+        let newDate = document.querySelector(`[name="${mealID}"`);
+        console.log(newDate.value)
+        let payload = await axios.put(url, {
+        mealDate: newDate.value
+        },
+          {
+					headers: {
+						authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+					},
+				});
+				console.log("payload: ", payload.data.payload);
+				// setMeals(payload.data.payload);
+			} catch (e) {
+				console.log(e);
+			}
+  }
 	useEffect(() => {
 		getMeals();
-  }, []);
-  
+	}, []);
+
 	useEffect(() => {
 		if (checkJwtToken()) {
 			navigate("/protected-home");
@@ -84,7 +107,14 @@ function CalendarWidget() {
 							</div>
 							<div className="title">{item.mealTitle}</div>
 							<div className="inputDiv">
-                <input ref={inputEl} className="dateInput" type="date"></input>
+								<input									
+									className="dateInput"
+                  type="text"
+                  name={item._id}
+                  defaultValue={item.mealDate}
+                  //defaultValue={item.mealDate}                  
+                ></input>
+                <button onClick={() => updateMeal(item._id)}className="setDate">Set Date</button>
 							</div>
 						</div>
 					</>
