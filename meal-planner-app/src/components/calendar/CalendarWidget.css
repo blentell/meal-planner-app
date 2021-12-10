@@ -13,7 +13,7 @@
   margin-right: 5px;
 }
 .title{
-  width: 200px;
+  width: 180px;
   margin-right: 5px;
   text-align: left;
   font-size: 14px;
@@ -21,8 +21,7 @@
 
 .dateInput{    
   width: 77px;
-  font-size: .8rem;
-  margin-right: 5px;  
+  font-size: .8rem;    
 }
 
 .delete{
@@ -34,6 +33,7 @@
 .inputDiv{
   display: flex;
   flex-direction: column;
+  margin-right: 5px;
 }
 .setDate{
   width: 110px;
