@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 import CheckToken from "../../hooks/CheckToken";
@@ -9,6 +9,7 @@ function CalendarWidget() {
 	const { checkJwtToken } = CheckToken();
 	const navigate = useNavigate();
 	const [meals, setMeals] = useState([]);
+  const inputEl = useRef(null);
 
 	async function getMeals() {
 		try {
@@ -83,7 +84,7 @@ function CalendarWidget() {
 							</div>
 							<div className="title">{item.mealTitle}</div>
 							<div className="inputDiv">
-								<input className="dateInput" type="date"></input>
+                <input ref={inputEl} className="dateInput" type="date"></input>
 							</div>
 						</div>
 					</>
