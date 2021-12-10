@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import axios from "axios";
 import jwtDecode from "jwt-decode";
 import Signup from "./components/signup/Signup";
 import Signin from "./components/signin/Signin";
 import Footer from "./components/footer/Footer";
-import Calendar from "./components/calendar/CalendarWidget";
+import CalendarWidget from "./components/calendar/CalendarWidget";
 import Home from "./components/home/Home";
 import Nav from "./components/navbar/Navbar";
 import Meals from "./components/meals/Meals";
+
 
 import PrivateRoute from "./components/privateRoute/PrivateRoute";
 import { SearchContext, MealContext } from "./context/mealContext";
@@ -23,6 +25,7 @@ function App() {
   const [mealSelected, setMealSelected] = useState("");
   const [searching, setSearching] = useState(false);
 
+
 	async function handleSearchChange(inputValue) {		
     setSearchValue(inputValue);
     const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${inputValue}`);
@@ -31,25 +34,39 @@ function App() {
     setResults(data.meals || []);
 		setSearching(true);		
   }
-  
-	function handleMealSelected(mealSelected) {
+
+	async function handleMealSelected(mealSelected) {
 		setMealSelected(mealSelected);
-		let selectedMeal = window.localStorage.setItem(
-			"selectedMeal",
-			mealSelected
-		);
-		
 		setSearching(false);
+		try {
+			let payload = await axios.post(
+				"http://localhost:3001/api/meals/add-meal/",
+				{
+					mealTitle: mealSelected.strMeal,
+					mealPicture: mealSelected.strMealThumb,
+					mealDate: document.querySelector("input .dateInput"),
+				},
+				{
+					headers: {
+						authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+					},
+				}
+			);
+      // window.location.reload(false);
+			// console.log("AppMealSelected: ", mealSelected);
+			// console.log("payload: ", payload);
+		} catch (e) {
+			console.log(e.response);
+		}
 	}
-// 	useEffect(() => {
-// let selectedMeal = window.localStorage.getItem("selectedMeal")
-// 	}, []);
+
+	
 
   const searchContextValue = {
     handleMealSelected,
     handleSearchChange,
     results,
-		searching,
+		searching,		
   }
 
 	useEffect(() => {
@@ -79,21 +96,13 @@ function App() {
 					<Nav user={user} setUser={setUser} />
 				</SearchContext.Provider>
 
-				<Routes>
-					<Route
-						path="/fetch-movie/:name"
-						element={<PrivateRoute>{/* <Movie /> */}</PrivateRoute>}
-					/>
+				<Routes>					
 					<Route
 						path="/protected-home/"
 						element={
-							<MealContext.Provider value={mealSelected}>
-								<PrivateRoute>
-									<Calendar
-										setUser={setUser}										
-									/>
-								</PrivateRoute>
-							</MealContext.Provider>
+							<PrivateRoute>
+								<CalendarWidget setUser={setUser}/>
+							</PrivateRoute>
 						}
 					/>
 					<Route
