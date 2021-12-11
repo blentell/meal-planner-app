@@ -23,9 +23,30 @@ function App() {
 	const [results, setResults] = useState([]);
 	const [mealSelected, setMealSelected] = useState("");
 	const [searching, setSearching] = useState(false);
-	const { recipe } = useContext(RecipeContext);
+	// const { recipe } = useContext(RecipeContext);
+  const [recipe, setRecipe] = useState([]);
 
 
+	async function getRecipe(mealID) {
+		try {
+			let url = `http://localhost:3001/api/meals/get-meal/${mealID}`;
+
+			let payload = await axios.get(url, {
+				headers: {
+					authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+				},
+			});
+			let data = payload.data.payload;
+
+			setRecipe(data);
+
+			console.log("setRecipe: ", data);
+		} catch (e) {
+			console.log(e);
+		}
+	}
+
+	
 	async function handleSearchChange(inputValue) {
 		setSearchValue(inputValue);
 		const response = await fetch(
@@ -43,7 +64,7 @@ function App() {
 		setSearching(false);
 		try {
 			let payload = await axios.post(
-				"http://localhost:3001/api/meals/add-meal/",
+				"http://localhost:3001/api/meals/add-meal",
 				{
 					mealTitle: mealSelected.strMeal,
 					mealPicture: mealSelected.strMealThumb,
@@ -91,6 +112,7 @@ function App() {
 					mealMeasure20: mealSelected.strMeasure20,
 					mealSource: mealSelected.strSource,
 					mealYoutube: mealSelected.strYoutube,
+					mealInstructions: mealSelected.strInstructions,
 				},
 				{
 					headers: {
@@ -113,6 +135,10 @@ function App() {
 		searching,
 	};
 
+	const recipeContextValue = {		
+		recipe,
+		getRecipe
+	}
  
 
 	useEffect(() => {
@@ -133,7 +159,7 @@ function App() {
 			}
 		}
 	}, []);
-
+// console.log(recipe)
 	return (
 		<>
 			<ToastContainer theme="colored" />
@@ -147,7 +173,9 @@ function App() {
 						path="/protected-home/"
 						element={
 							<PrivateRoute>
-								<CalendarWidget setUser={setUser} />
+								<RecipeContext.Provider value={recipeContextValue}>
+									<CalendarWidget setUser={setUser} />
+								</RecipeContext.Provider>
 							</PrivateRoute>
 						}
 					/>
@@ -155,10 +183,10 @@ function App() {
 						path="/protected-home/Meals"
 						element={
 							<PrivateRoute>
-									<RecipeContext.Provider value={recipe}>
+								<RecipeContext.Provider value={recipeContextValue}>
 									<Meals />
-							</RecipeContext.Provider>
-								</PrivateRoute>
+								</RecipeContext.Provider>
+							</PrivateRoute>
 						}
 					/>
 
