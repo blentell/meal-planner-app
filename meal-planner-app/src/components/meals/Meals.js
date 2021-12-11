@@ -5,10 +5,12 @@ import { RecipeContext } from "../../context/mealContext";
 import "./index.css";
 function Meals() {
 	const { recipe } = useContext(RecipeContext);
-	console.log("Meal: ", recipe)
+
+	console.log("Meal: ", [recipe])
+
 	return (
-			<div className="recipe">
-				{recipe.map((item) => {
+			<div className="currentRecipe">
+				{[recipe].map((item) => {
 					return (
 						<>
 							<div className="meals">
@@ -90,7 +92,7 @@ function Meals() {
 							</div>
 							<div className="info-section instructions">
 								<label htmlFor="">Instructions</label>
-								<span>{item.strInstructions}</span>
+								<span>{item.mealInstructions}</span>
 							</div>
 						</>
 					);

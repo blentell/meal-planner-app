@@ -3,16 +3,14 @@ import axios from "axios";
 import CheckToken from "../../hooks/CheckToken";
 import { useNavigate, Link } from "react-router-dom";
 import { RecipeContext } from "../../context/mealContext";
-
 import "./CalendarWidget.css";
 
 function CalendarWidget() {
 	const { checkJwtToken } = CheckToken();
 	const navigate = useNavigate();
   const [meals, setMeals] = useState([]);
-  const [recipe, setRecipe] = useState({});
-
-
+  // const [recipe, setRecipe] = useState([]);
+const {getRecipe, recipe} = useContext(RecipeContext)
 
 	async function getMeals() {
 		try {
@@ -31,25 +29,27 @@ function CalendarWidget() {
 			console.log(e);
 		}
   }
+// useEffect(() => {
+// 	async function getRecipe(mealID) {
+// 		try {
+// 			let url = `http://localhost:3001/api/meals/get-meal/${mealID}`;
 
-  async function getRecipe(mealID) {
-		try {
-			let url = `http://localhost:3001/api/meals/get-meal/${mealID}`;
+// 			let payload = await axios.get(url, {
+// 				headers: {
+// 					authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+// 				},
+// 			});
+// 			let data = payload.data.payload;
 
-			let payload = await axios.get(url, {
-				headers: {
-					authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
-				},
-			});
-      let data = payload.data.payload;
-      
-      setRecipe(data);
+// 			setRecipe(data);
 
-      console.log("setRecipe: ", data )
-		} catch (e) {
-      console.log(e);
-		}
-	}
+// 			console.log("setRecipe: ", data);
+// 		} catch (e) {
+// 			console.log(e);
+// 		}
+//   }
+//   return [recipe, getRecipe];
+// },[]);
 	async function deleteMeals(mealID) {
 		try {
 			// console.log("mealList: ", meals);
@@ -109,7 +109,7 @@ function CalendarWidget() {
   }, []);
    
   let link = "/protected-home/meals";
-  
+ 
    
   return (
     <div className="main">
@@ -162,7 +162,8 @@ function CalendarWidget() {
 							</div>
 						</>
 				);
-			})}
+      })}
+      
 		</div>
 	);
 }
