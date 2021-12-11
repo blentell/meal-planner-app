@@ -4,11 +4,13 @@ const { isAlpha, isInt } = require("validator");
 // bringing in the required utilities
 var { jwtMiddleware } = require("../users/lib/authMiddleware");
 
-const {getAllMeals, addMeals, deleteMeals, updateMeals } = require('./controller/mealController')
+const {getAllMeals, getMeal, addMeals, deleteMeals, updateMeals } = require('./controller/mealController')
 
 router.post("/add-meal", jwtMiddleware, addMeals);
 
 router.get("/", jwtMiddleware, getAllMeals);
+
+router.get("/get-meal/:id", jwtMiddleware, getMeal);
 
 router.put("/update-meal/:id", jwtMiddleware, updateMeals);
 

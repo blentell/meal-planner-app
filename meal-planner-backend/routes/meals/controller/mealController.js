@@ -16,11 +16,32 @@ async function getAllMeals(req, res) {
 res.json({ message: "success", payload: foundMeals });
 	} catch (e) {
 		console.log(e)
-	}
-	
-
-	
+	}	
 }
+
+async function getMeal(req, res) {
+	try {
+		const decodedData = res.locals.decodedData;
+
+		let foundUser = await User.findOne({ email: decodedData.email });
+		let userMealArray = foundUser.mealList;
+		let filterArray = userMealArray.filter(
+			(item) => item._id.toString() !== req.params.id
+		);
+
+		foundUser.mealList = filterArray;
+		await foundUser.save();
+		let foundMeal = await Meals.findById(req.params.id);
+
+		res.json({
+			message: "success",
+			payload: foundMeal,
+		});
+	} catch (e) {
+		res.status(500).json(errorHandler(e));
+	}
+}
+
 async function addMeals(req, res) {
 	try {
 		// const { mealTitle, mealPicture, mealDate } = req.body;
@@ -28,55 +49,56 @@ async function addMeals(req, res) {
 		const decodedData = res.locals.decodedData;
 		
 		let foundUser = await User.findOne({ email: decodedData.email });
-		console.log(req.body);
+		console.log("req.body: ", req.body);
 		let createdMeal = new Meals({
 			mealTitle: req.body.mealTitle,
 			mealPicture: req.body.mealPicture,
 			mealDate: req.body.mealDate,
 			mealArea: req.body.mealArea,
 			mealCategory: req.body.mealCategory,
-			mealIngredient1: req.body.strIngredient1,
-			mealIngredient2: req.body.strIngredient2,
-			mealIngredient3: req.body.strIngredient3,
-			mealIngredient4: req.body.strIngredient4,
-			mealIngredient5: req.body.strIngredient5,
-			mealIngredient6: req.body.strIngredient6,
-			mealIngredient7: req.body.strIngredient7,
-			mealIngredient8: req.body.strIngredient8,
-			mealIngredient9: req.body.strIngredient9,
-			mealIngredient10: req.body.strIngredient10,
-			mealIngredient11: req.body.strIngredient11,
-			mealIngredient12: req.body.strIngredient12,
-			mealIngredient13: req.body.strIngredient13,
-			mealIngredient14: req.body.strIngredient14,
-			mealIngredient15: req.body.strIngredient15,
-			mealIngredient16: req.body.strIngredient16,
-			mealIngredient17: req.body.strIngredient17,
-			mealIngredient18: req.body.strIngredient18,
-			mealIngredient19: req.body.strIngredient19,
-			mealIngredient20: req.body.strIngredient20,
-			mealMeasure1: req.body.strMeasure1,
-			mealMeasure2: req.body.strMeasure2,
-			mealMeasure3: req.body.strMeasure3,
-			mealMeasure4: req.body.strMeasure4,
-			mealMeasure5: req.body.strMeasure5,
-			mealMeasure6: req.body.strMeasure6,
-			mealMeasure7: req.body.strMeasure7,
-			mealMeasure8: req.body.strMeasure8,
-			mealMeasure9: req.body.strMeasure9,
-			mealMeasure10: req.body.strMeasure10,
-			mealMeasure11: req.body.strMeasure11,
-			mealMeasure12: req.body.strMeasure12,
-			mealMeasure13: req.body.strMeasure13,
-			mealMeasure14: req.body.strMeasure14,
-			mealMeasure15: req.body.strMeasure15,
-			mealMeasure16: req.body.strMeasure16,
-			mealMeasure17: req.body.strMeasure17,
-			mealMeasure18: req.body.strMeasure18,
-			mealMeasure19: req.body.strMeasure19,
-			mealMeasure20: req.body.strMeasure20,
-			mealSource: req.body.strSource,
-			mealYoutube: req.body.strYoutube,
+			mealIngredient1: req.body.mealIngredient1,
+			mealIngredient2: req.body.mealIngredient2,
+			mealIngredient3: req.body.mealIngredient3,
+			mealIngredient4: req.body.mealIngredient4,
+			mealIngredient5: req.body.mealIngredient5,
+			mealIngredient6: req.body.mealIngredient6,
+			mealIngredient7: req.body.mealIngredient7,
+			mealIngredient8: req.body.mealIngredient8,
+			mealIngredient9: req.body.mealIngredient9,
+			mealIngredient10: req.body.mealIngredient10,
+			mealIngredient11: req.body.mealIngredient11,
+			mealIngredient12: req.body.mealIngredient12,
+			mealIngredient13: req.body.mealIngredient13,
+			mealIngredient14: req.body.mealIngredient14,
+			mealIngredient15: req.body.mealIngredient15,
+			mealIngredient16: req.body.mealIngredient16,
+			mealIngredient17: req.body.mealIngredient17,
+			mealIngredient18: req.body.mealIngredient18,
+			mealIngredient19: req.body.mealIngredient19,
+			mealIngredient20: req.body.mealIngredient20,
+			mealMeasure1: req.body.mealMeasure1,
+			mealMeasure2: req.body.mealMeasure2,
+			mealMeasure3: req.body.mealMeasure3,
+			mealMeasure4: req.body.mealMeasure4,
+			mealMeasure5: req.body.mealMeasure5,
+			mealMeasure6: req.body.mealMeasure6,
+			mealMeasure7: req.body.mealMeasure7,
+			mealMeasure8: req.body.mealMeasure8,
+			mealMeasure9: req.body.mealMeasure9,
+			mealMeasure10: req.body.mealMeasure10,
+			mealMeasure11: req.body.mealMeasure11,
+			mealMeasure12: req.body.mealMeasure12,
+			mealMeasure13: req.body.mealMeasure13,
+			mealMeasure14: req.body.mealMeasure14,
+			mealMeasure15: req.body.mealMeasure15,
+			mealMeasure16: req.body.mealMeasure16,
+			mealMeasure17: req.body.mealMeasure17,
+			mealMeasure18: req.body.mealMeasure18,
+			mealMeasure19: req.body.mealMeasure19,
+			mealMeasure20: req.body.mealMeasure20,
+			mealSource: req.body.mealSource,
+			mealYoutube: req.body.mealYoutube,
+			mealInstructions: req.body.mealInstructions,
 			mealOwner: foundUser._id,
 		});
 		
@@ -138,6 +160,7 @@ async function updateMeals(req, res) {
 
 module.exports = {
 	getAllMeals,
+	getMeal,
 	addMeals,
 	deleteMeals,
 	updateMeals,

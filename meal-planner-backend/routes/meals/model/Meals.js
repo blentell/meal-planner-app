@@ -10,6 +10,7 @@ const MealSchema = new mongoose.Schema(
 		},
 		mealDate: {
 			type: String,
+			default: "12-20-2021",
 		},
 		mealArea: {
 			type: String,
@@ -141,6 +142,9 @@ const MealSchema = new mongoose.Schema(
 			type: String,
 		},
 		mealYoutube: {
+			type: String,
+		},
+		mealInstructions: {
 			type: String,
 		},
 		mealOwner: {
