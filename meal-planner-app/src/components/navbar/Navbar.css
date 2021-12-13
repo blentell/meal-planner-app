@@ -38,3 +38,6 @@
   text-decoration: none;
   color: rgb(44, 44, 2);
 }
+.form-group{
+  display: flex;
+}

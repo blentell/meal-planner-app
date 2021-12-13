@@ -14,7 +14,7 @@ function Nav({ user, setUser}) {
 	let linkTitle4 = user ? "Recipes" : "";
 	let link4 = user ? "/protected-home/meals" : "/sign-in";
 	let logoutButton = user ? logout : () => { };
-	const { title, handleSearchChange, searching } = useContext(SearchContext);
+	const { title, handleSearchChange, results, searching } = useContext(SearchContext);
 	
 
 	function logout() {
@@ -55,16 +55,29 @@ function Nav({ user, setUser}) {
 							</Link>
 						</li>
 					</ul>
-
-					<input
-						className="search-form-control"
-						name="search"
-						placeholder="Search"
-						aria-label="Search"
-						onChange={(e) => handleSearchChange(e.target.value)}
-						style={user ? { visibility: "visible" } : { visibility: "hidden" }}
-					/>
-					{title !== "" && searching && <SearchList />}
+					<div className="form-group">
+						<button
+							className="printButton"
+							type="button"
+							onClick={() => window.print()}
+							style={
+								user ? { visibility: "visible" } : { visibility: "hidden" }
+							}
+						>
+							Print
+						</button>
+						<input
+							className="search-form-control"
+							name="search"
+							placeholder="Search"
+							aria-label="Search"
+							onChange={(e) => handleSearchChange(e.target.value)}
+							style={
+								user ? { visibility: "visible" } : { visibility: "hidden" }
+							}
+						/>
+					</div>
+					{results !== "" && searching && <SearchList />}
 				</div>
 			</div>
 		</nav>
