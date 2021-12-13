@@ -12,21 +12,86 @@ import Nav from "./components/navbar/Navbar";
 import Meals from "./components/meals/Meals";
 
 import PrivateRoute from "./components/privateRoute/PrivateRoute";
-import { SearchContext, MealContext, RecipeContext } from "./context/mealContext";
+import {
+	SearchContext,
+	MealContext,
+	RecipeContext,
+} from "./context/mealContext";
 
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
-function App() {
-	const [searchValue, setSearchValue] = useState("");
+function App() {	
 	const [user, setUser] = useState(null);
 	const [results, setResults] = useState([]);
 	const [mealSelected, setMealSelected] = useState("");
 	const [searching, setSearching] = useState(false);
 	// const { recipe } = useContext(RecipeContext);
-  const [recipe, setRecipe] = useState([]);
+	const [recipe, setRecipe] = useState([]);
+	const [meals, setMeals] = useState([]);
 
+	async function getMeals() {
+		try {
+			let url = "http://localhost:3001/api/meals/";
 
+			let payload = await axios.get(url, {
+				headers: {
+					authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+				},
+			});
+
+			// payload.data.payload[0].mealDate.toString().split("T")[0];
+			setMeals(payload.data.payload);
+		} catch (e) {
+			console.log(e);
+		}
+	}
+async function deleteMeals(mealID) {
+	try {
+		// console.log("mealList: ", meals);
+		let url = `http://localhost:3001/api/meals/delete-meal/${mealID}`;
+
+		let payload = await axios.delete(
+			url,
+
+			{
+				headers: {
+					authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+				},
+			}
+		);
+		let newMeal = [...meals];
+
+		let filteredMealArray = newMeal.filter(
+			(item) => item._id !== payload.data.payload._id
+		);
+		//console.log("deletePayload: ", payload.data.payload);
+		setMeals(filteredMealArray);
+	} catch (e) {
+		console.log(e);
+	}
+}
+
+async function updateMeal(mealID) {
+	try {
+		let url = `http://localhost:3001/api/meals/update-meal/${mealID}`;
+		let newDate = document.querySelector(`[name="${mealID}"`);
+		
+		let payload = await axios.put(
+			url,
+			{
+				mealDate: newDate.value,
+			},
+			{
+				headers: {
+					authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+				},
+			}
+		);
+	} catch (e) {
+		console.log(e);
+	}
+}
 	async function getRecipe(mealID) {
 		try {
 			let url = `http://localhost:3001/api/meals/get-meal/${mealID}`;
@@ -37,18 +102,14 @@ function App() {
 				},
 			});
 			let data = payload.data.payload;
-
 			setRecipe(data);
-
 			console.log("setRecipe: ", data);
 		} catch (e) {
 			console.log(e);
 		}
 	}
 
-	
-	async function handleSearchChange(inputValue) {
-		setSearchValue(inputValue);
+	async function handleSearchChange(inputValue) {		
 		const response = await fetch(
 			`https://www.themealdb.com/api/json/v1/1/search.php?s=${inputValue}`
 		);
@@ -59,8 +120,7 @@ function App() {
 	}
 
 	async function handleMealSelected(mealSelected) {
-		setMealSelected(mealSelected);
-		//console.log("mealSelected: ", mealSelected);
+		
 		setSearching(false);
 		try {
 			let payload = await axios.post(
@@ -119,10 +179,11 @@ function App() {
 						authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
 					},
 				}
-			);
-			// window.location.reload(false);
-			// console.log("AppMealSelected: ", mealSelected);
-			console.log("appPayload: ", payload);
+			);	
+			let newMealArray = [...meals, payload.data.payload];
+			const resetSearch = document.querySelector(".search-form-control");
+			resetSearch.value = "";
+			setMeals(newMealArray);
 		} catch (e) {
 			console.log(e.response);
 		}
@@ -135,11 +196,14 @@ function App() {
 		searching,
 	};
 
-	const recipeContextValue = {		
+	const recipeContextValue = {
 		recipe,
-		getRecipe
-	}
- 
+		getRecipe,
+		getMeals,
+		meals,
+		updateMeal,
+		deleteMeals,
+	};
 
 	useEffect(() => {
 		let jwtToken = window.localStorage.getItem("jwtToken");
@@ -159,7 +223,7 @@ function App() {
 			}
 		}
 	}, []);
-// console.log(recipe)
+
 	return (
 		<>
 			<ToastContainer theme="colored" />
