@@ -7,12 +7,14 @@ const errorHandler = require("../../utils/errorHandler/errorHandler");
 async function getAllMeals(req, res) {
 	try {
 		const decodedData = res.locals.decodedData;
-
+console.log(decodedData);
 		let foundUser = await User.findOne({ email: decodedData.email }).populate(
-			"mealList"
+			"mealList",
+			"-mealOwner -_v"
 		);
-		
-		let foundMeals = await Meals.find({user: foundUser._id})
+		console.log("foundUser: ", foundUser)
+		let foundMeals = await Meals.find({ mealOwner: foundUser._id })
+		console.log("foundMeals: ", foundMeals)
 res.json({ message: "success", payload: foundMeals });
 	} catch (e) {
 		console.log(e)
