@@ -1,5 +1,5 @@
 import React, {useContext } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { SearchContext } from "../../context/mealContext";
 import SearchList from "../search/SearchList";
 
@@ -20,39 +20,44 @@ function Nav({ user, setUser}) {
 	function logout() {
 		setUser(null);
 		window.localStorage.removeItem("jwtToken");
+		window.location.reload()
 	}
 	
 	return (
 		<nav className="navbar">
 			<div className="container">
-				<Link to="/" className="navbar-brand">
+				<NavLink exact activeClassName="active" to="/" className="navbar-brand">
 					Home
-				</Link>
+				</NavLink>
 				<div className="navbar-collapse" id="navbarNav">
 					<ul className="navbar-nav">
 						<li className="nav-item">
-							<Link to={link1} className="nav-link active" aria-current="page">
+							<NavLink
+								to={link1}
+								className="nav-link"
+								aria-current="page"
+							>
 								{linkTitle1}
-							</Link>
+							</NavLink>
 						</li>
 						<li className="nav-item">
-							<Link
+							<NavLink
 								to={link2}
 								className="nav-link"
 								onClick={() => logoutButton()}
 							>
 								{linkTitle2}
-							</Link>
+							</NavLink>
 						</li>
 						<li className="nav-item">
-							<Link to={link3} className="nav-link">
+							<NavLink to={link3} className="nav-link">
 								{linkTitle3}
-							</Link>
+							</NavLink>
 						</li>
 						<li className="nav-item">
-							<Link to={link4} className="nav-link">
+							<NavLink to={link4} className="nav-link">
 								{linkTitle4}
-							</Link>
+							</NavLink>
 						</li>
 					</ul>
 					<div className="form-group">

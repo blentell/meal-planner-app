@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { RecipeContext } from "../../context/mealContext";
 // import axios from "axios";
 // import CalendarWidget from "../calendar/CalendarWidget";
-import "./index.css";
+import "./Meals.css";
 function Meals() {
 	const { recipe } = useContext(RecipeContext);
 
@@ -24,7 +24,7 @@ function Meals() {
 						<h3 className="meal-Info">{item.mealTitle}</h3>
 						<div className="info-section">
 							<label htmlFor="">Type</label>
-							<span>{item.strCategory}</span>
+							<span>{item.mealCategory}</span>
 						</div>
 						<div className="info-section">
 							<label htmlFor="">Ingredients</label>

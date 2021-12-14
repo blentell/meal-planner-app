@@ -6,7 +6,7 @@
   visibility: hidden;
 } */
 .navbar {
-  background-color: #97e7f5;
+  background-color: #69433A;
 }
 .container {
   display: flex; 
@@ -15,7 +15,7 @@
   align-content: center;
   align-items: center;
   align-self: center;
-  background-color: #97e7f5;
+  background-color: #69433A;
   padding: 10px;
 }
 .navbar-nav{
@@ -36,8 +36,28 @@
 }
 .nav-link, .navbar-brand{
   text-decoration: none;
-  color: rgb(44, 44, 2);
+  color: #EDDBD8;
 }
 .form-group{
   display: flex;
+}
+.active {
+  font-weight: 900;
+  /* font-size: 20px; */
+  color: #CAAF7D;
+  text-decoration:underline overline;
+  
+
+}
+.inactive{
+  color: black;
+}
+@media screen and (min-width: 440px) {
+.nav-item:not(:first-child){
+  margin-left: 100px;
+}
+.form-group {
+  justify-content: center;
+}
+
 }

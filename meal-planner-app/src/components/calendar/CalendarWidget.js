@@ -44,7 +44,7 @@ const {getRecipe, getMeals, updateMeal, deleteMeals, meals} = useContext(RecipeC
 								</div>
 								<Link
 									to={link}
-									className="nav-link"
+									className="recipe-title"
 									onClick={() => getRecipe(item._id)}
 								>
 									<div className="imgDiv">
@@ -56,7 +56,7 @@ const {getRecipe, getMeals, updateMeal, deleteMeals, meals} = useContext(RecipeC
 								</Link>
 								<Link
 									to={link}
-									className="nav-link"
+									className="recipe-title"
 									onClick={() => getRecipe(item._id)}
 								>
 									<div className="title">{item.mealTitle}</div>

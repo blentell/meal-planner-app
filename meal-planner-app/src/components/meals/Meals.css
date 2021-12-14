@@ -1,0 +1,39 @@
+.meal-Info {
+  font-size: 20px;
+  display: flex;
+  margin-left: 15px;
+}
+.info-section label {
+  color: rgba(0, 0, 0, 0.5);
+  margin: 5px;
+
+}
+
+.info-section span {
+  font-weight: bold;
+  margin: 5px;
+
+}
+.mealImg {
+  margin-top: 15px;
+  width: 50%;
+}
+.meals {
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
+}
+.list{
+list-style-type: none;
+}
+.currentRecipe{
+  display: flex;
+  flex-direction: column;
+    align-items: center; 
+    min-height: 82.3vh;
+}
+.instructions{
+  width: 80%;
+  margin: 15px;
+  min-height: 225px; 
+}
