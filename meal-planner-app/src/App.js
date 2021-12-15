@@ -10,12 +10,14 @@ import CalendarWidget from "./components/calendar/CalendarWidget";
 import Home from "./components/home/Home";
 import Nav from "./components/navbar/Navbar";
 import Meals from "./components/meals/Meals";
+import AddRecipe from "./components/addRecipe/AddRecipe";
+
 
 import PrivateRoute from "./components/privateRoute/PrivateRoute";
 import {
 	SearchContext,
-	MealContext,
 	RecipeContext,
+	NewRecipeContext
 } from "./context/mealContext";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -204,6 +206,9 @@ async function updateMeal(mealID) {
 		updateMeal,
 		deleteMeals,
 	};
+		const newrecipeContextValue = {
+		
+		};
 
 	useEffect(() => {
 		let jwtToken = window.localStorage.getItem("jwtToken");
@@ -250,6 +255,16 @@ async function updateMeal(mealID) {
 								<RecipeContext.Provider value={recipeContextValue}>
 									<Meals />
 								</RecipeContext.Provider>
+							</PrivateRoute>
+						}
+					/>
+					<Route
+						path="/protected-home/add-recipes"
+						element={
+							<PrivateRoute>
+								<NewRecipeContext.Provider value={newrecipeContextValue}>
+									<AddRecipe />
+								</NewRecipeContext.Provider>
 							</PrivateRoute>
 						}
 					/>
