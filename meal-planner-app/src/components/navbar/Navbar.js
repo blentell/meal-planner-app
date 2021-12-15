@@ -13,6 +13,8 @@ function Nav({ user, setUser}) {
 	let link3 = user ? "/protected-home" : "/sign-in";
 	let linkTitle4 = user ? "Recipes" : "";
 	let link4 = user ? "/protected-home/meals" : "/sign-in";
+	let linkTitle5 = user ? "+Recipes" : "";
+	let link5 = user ? "/protected-home/add-recipes" : "/sign-in";
 	let logoutButton = user ? logout : () => { };
 	const { title, handleSearchChange, results, searching } = useContext(SearchContext);
 	
@@ -32,11 +34,7 @@ function Nav({ user, setUser}) {
 				<div className="navbar-collapse" id="navbarNav">
 					<ul className="navbar-nav">
 						<li className="nav-item">
-							<NavLink
-								to={link1}
-								className="nav-link"
-								aria-current="page"
-							>
+							<NavLink to={link1} className="nav-link" aria-current="page">
 								{linkTitle1}
 							</NavLink>
 						</li>
@@ -57,6 +55,11 @@ function Nav({ user, setUser}) {
 						<li className="nav-item">
 							<NavLink to={link4} className="nav-link">
 								{linkTitle4}
+							</NavLink>
+						</li>
+						<li className="nav-item">
+							<NavLink to={link5} className="nav-link">
+								{linkTitle5}
 							</NavLink>
 						</li>
 					</ul>
