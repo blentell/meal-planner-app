@@ -1,0 +1,57 @@
+.homePage{
+  min-height: 79.3vh;
+  background-color: #C59F96;
+}
+.tasty{
+ margin-top: 20px;
+ width: 90%;
+ height: 50%;
+}
+
+.home {
+  display: flex;  
+  justify-content: center; 
+}
+.text {
+  text-align: center;
+}
+
+.logoContainer{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+}
+.logo {
+  width: 60%;
+  height: 250px;
+}
+@media screen and (min-width: 440px) {
+  .homePage{
+  min-height: 82.3vh;
+  background-color: #C59F96;
+}
+.tasty{
+ margin-top: 20px;
+ width: 50%; 
+}
+.logo {
+  width: 40%;
+  height: 350px;
+}
+}
+@media screen and (min-width: 900px) {
+  .homePage{
+  min-height: 82.3vh;
+  background-color: #C59F96;
+}
+.tasty{
+ margin-top: 20px;
+ width: 25%;
+ height: 400px; 
+}
+.logo {
+  width: 20%;
+  height: 350px;
+}
+}
