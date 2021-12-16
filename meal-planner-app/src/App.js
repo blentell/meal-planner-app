@@ -12,20 +12,20 @@ import Nav from "./components/navbar/Navbar";
 import Meals from "./components/meals/Meals";
 import AddRecipe from "./components/addRecipe/AddRecipe";
 
-
 import PrivateRoute from "./components/privateRoute/PrivateRoute";
 import {
 	SearchContext,
 	RecipeContext,
-	NewRecipeContext
+	NewRecipeContext,
 } from "./context/mealContext";
 
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
-function App() {	
+function App() {
 	const [user, setUser] = useState(null);
 	const [results, setResults] = useState([]);
+	const [results2, setResults2] = useState([]);
 	const [mealSelected, setMealSelected] = useState("");
 	const [searching, setSearching] = useState(false);
 	// const { recipe } = useContext(RecipeContext);
@@ -48,52 +48,52 @@ function App() {
 			console.log(e);
 		}
 	}
-async function deleteMeals(mealID) {
-	try {
-		// console.log("mealList: ", meals);
-		let url = `http://localhost:3001/api/meals/delete-meal/${mealID}`;
+	async function deleteMeals(mealID) {
+		try {
+			// console.log("mealList: ", meals);
+			let url = `http://localhost:3001/api/meals/delete-meal/${mealID}`;
 
-		let payload = await axios.delete(
-			url,
+			let payload = await axios.delete(
+				url,
 
-			{
-				headers: {
-					authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
-				},
-			}
-		);
-		let newMeal = [...meals];
+				{
+					headers: {
+						authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+					},
+				}
+			);
+			let newMeal = [...meals];
 
-		let filteredMealArray = newMeal.filter(
-			(item) => item._id !== payload.data.payload._id
-		);
-		//console.log("deletePayload: ", payload.data.payload);
-		setMeals(filteredMealArray);
-	} catch (e) {
-		console.log(e);
+			let filteredMealArray = newMeal.filter(
+				(item) => item._id !== payload.data.payload._id
+			);
+			//console.log("deletePayload: ", payload.data.payload);
+			setMeals(filteredMealArray);
+		} catch (e) {
+			console.log(e);
+		}
 	}
-}
 
-async function updateMeal(mealID) {
-	try {
-		let url = `http://localhost:3001/api/meals/update-meal/${mealID}`;
-		let newDate = document.querySelector(`[name="${mealID}"`);
-		
-		let payload = await axios.put(
-			url,
-			{
-				mealDate: newDate.value,
-			},
-			{
-				headers: {
-					authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+	async function updateMeal(mealID) {
+		try {
+			let url = `http://localhost:3001/api/meals/update-meal/${mealID}`;
+			let newDate = document.querySelector(`[name="${mealID}"`);
+
+			let payload = await axios.put(
+				url,
+				{
+					mealDate: newDate.value,
 				},
-			}
-		);
-	} catch (e) {
-		console.log(e);
+				{
+					headers: {
+						authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+					},
+				}
+			);
+		} catch (e) {
+			console.log(e);
+		}
 	}
-}
 	async function getRecipe(mealID) {
 		try {
 			let url = `http://localhost:3001/api/meals/get-meal/${mealID}`;
@@ -111,18 +111,31 @@ async function updateMeal(mealID) {
 		}
 	}
 
-	async function handleSearchChange(inputValue) {		
+	async function handleSearchChange(inputValue) {
 		const response = await fetch(
 			`https://www.themealdb.com/api/json/v1/1/search.php?s=${inputValue}`
 		);
 
 		const data = await response.json();
 		setResults(data.meals || []);
+
+		const response2 = await fetch(
+				`http://localhost:3001/api/recipeDatabase/get-recipe/${inputValue}`,
+				{
+					method: "GET",
+					headers: {
+						authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+					},
+				}
+			)
+			const data2 = await response2.json();			
+		setResults2(data2.payload || [])
 		setSearching(true);
+
 	}
 
 	async function handleMealSelected(mealSelected) {
-		
+		console.log("mealSelected: ", mealSelected);
 		setSearching(false);
 		try {
 			let payload = await axios.post(
@@ -181,7 +194,7 @@ async function updateMeal(mealID) {
 						authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
 					},
 				}
-			);	
+			);
 			let newMealArray = [...meals, payload.data.payload];
 			const resetSearch = document.querySelector(".search-form-control");
 			resetSearch.value = "";
@@ -195,6 +208,7 @@ async function updateMeal(mealID) {
 		handleMealSelected,
 		handleSearchChange,
 		results,
+		results2,
 		searching,
 	};
 
@@ -206,9 +220,7 @@ async function updateMeal(mealID) {
 		updateMeal,
 		deleteMeals,
 	};
-		const newrecipeContextValue = {
-		
-		};
+	const newrecipeContextValue = {};
 
 	useEffect(() => {
 		let jwtToken = window.localStorage.getItem("jwtToken");
