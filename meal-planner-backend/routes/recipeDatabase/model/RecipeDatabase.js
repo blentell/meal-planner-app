@@ -2,148 +2,148 @@ const mongoose = require("mongoose");
 
 const RecipeDatabaseSchema = new mongoose.Schema(
 	{
-		recipeTitle: {
+		strMeal: {
 			type: String,
 		},
-		recipePicture: {
+		strMealThumb: {
 			type: String,
 		},
-		recipeArea: {
+		strArea: {
 			type: String,
 		},
-		recipeCategory: {
+		strCategory: {
 			type: String,
 		},
-		recipeIngredient1: {
+		strIngredient1: {
 			type: String,
 		},
-		recipeIngredient2: {
+		strIngredient2: {
 			type: String,
 		},
-		recipeIngredient3: {
+		strIngredient3: {
 			type: String,
 		},
-		recipeIngredient4: {
+		strIngredient4: {
 			type: String,
 		},
-		recipeIngredient5: {
+		strIngredient5: {
 			type: String,
 		},
-		recipeIngredient6: {
+		strIngredient6: {
 			type: String,
 		},
-		recipeIngredient7: {
+		strIngredient7: {
 			type: String,
 		},
-		recipeIngredient8: {
+		strIngredient8: {
 			type: String,
 		},
-		recipeIngredient9: {
+		strIngredient9: {
 			type: String,
 		},
-		recipeIngredient10: {
+		strIngredient10: {
 			type: String,
 		},
-		recipeIngredient11: {
+		strIngredient11: {
 			type: String,
 		},
-		recipeIngredient12: {
+		strIngredient12: {
 			type: String,
 		},
-		recipeIngredient13: {
+		strIngredient13: {
 			type: String,
 		},
-		recipeIngredient14: {
+		strIngredient14: {
 			type: String,
 		},
-		recipeIngredient15: {
+		strIngredient15: {
 			type: String,
 		},
-		recipeIngredient16: {
+		strIngredient16: {
 			type: String,
 		},
-		recipeIngredient17: {
+		strIngredient17: {
 			type: String,
 		},
-		recipeIngredient18: {
+		strIngredient18: {
 			type: String,
 		},
-		recipeIngredient19: {
+		strIngredient19: {
 			type: String,
 		},
-		recipeIngredient20: {
+		strIngredient20: {
 			type: String,
 		},
-		recipeMeasure1: {
+		strMeasure1: {
 			type: String,
 		},
-		recipeMeasure2: {
+		strMeasure2: {
 			type: String,
 		},
-		recipeMeasure3: {
+		strMeasure3: {
 			type: String,
 		},
-		recipeMeasure4: {
+		strMeasure4: {
 			type: String,
 		},
-		recipeMeasure5: {
+		strMeasure5: {
 			type: String,
 		},
-		recipeMeasure6: {
+		strMeasure6: {
 			type: String,
 		},
-		recipeMeasure7: {
+		strMeasure7: {
 			type: String,
 		},
-		recipeMeasure8: {
+		strMeasure8: {
 			type: String,
 		},
-		recipeMeasure9: {
+		strMeasure9: {
 			type: String,
 		},
-		recipeMeasure10: {
+		strMeasure10: {
 			type: String,
 		},
-		recipeMeasure11: {
+		strMeasure11: {
 			type: String,
 		},
-		recipeMeasure12: {
+		strMeasure12: {
 			type: String,
 		},
-		recipeMeasure13: {
+		strMeasure13: {
 			type: String,
 		},
-		recipeMeasure14: {
+		strMeasure14: {
 			type: String,
 		},
-		recipeMeasure15: {
+		strMeasure15: {
 			type: String,
 		},
-		recipeMeasure16: {
+		strMeasure16: {
 			type: String,
 		},
-		recipeMeasure17: {
+		strMeasure17: {
 			type: String,
 		},
-		recipeMeasure18: {
+		strMeasure18: {
 			type: String,
 		},
-		recipeMeasure19: {
+		strMeasure19: {
 			type: String,
 		},
-		recipeMeasure20: {
+		strMeasure20: {
 			type: String,
 		},
-		recipeSource: {
+		strSource: {
 			type: String,
 		},
-		recipeYoutube: {
+		strYoutube: {
 			type: String,
 		},
-		recipeInstructions: {
+		strInstructions: {
 			type: String,
 		},
-		recipeOwner: {
+		mealOwner: {
 			type: mongoose.Schema.ObjectId,
 			ref: "user",
 		},

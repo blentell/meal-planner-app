@@ -1,6 +1,6 @@
 const { isAlpha, isInt } = require("validator");
 
-const Recipe = require("../model/RecipeDatabase");
+const Recipes = require("../model/RecipeDatabase");
 const User = require("../../users/model/User");
 const errorHandler = require("../../utils/errorHandler/errorHandler");
 
@@ -24,22 +24,34 @@ async function getAllRecipes(req, res) {
 async function getRecipe(req, res) {
 	try {
 		const decodedData = res.locals.decodedData;
-
-		let foundUser = await User.findOne({ email: decodedData.email });
+		let foundUser = await User.findOne({ email: decodedData.email }).populate(
+			"recipeList",
+			"-recipeOwner -_v"
+		);
+		console.log("foundUser: ", foundUser);
 		let userRecipeArray = foundUser.recipeList;
 		let filterArray = userRecipeArray.filter(
 			(item) => item._id.toString() !== req.params.id
 		);
-
+		console.log(filterArray);
 		foundUser.recipeList = filterArray;
 		await foundUser.save();
-		let foundRecipe = await Recipes.findById(req.params.id);
 
+		let recipeVariable = req.params.recipeTitle;
+
+		let foundRecipe = await Recipes.find({
+			recipeOwner: foundUser._id,
+			recipeTitle: {
+				$regex: new RegExp(recipeVariable, "i"),
+			},
+		});
+		console.log("foundRecipe: ", foundRecipe);
 		res.json({
 			message: "success",
 			payload: foundRecipe,
 		});
 	} catch (e) {
+		console.log("error: ", e);
 		res.status(500).json(errorHandler(e));
 	}
 }
@@ -55,55 +67,54 @@ async function addRecipe(req, res) {
 		);;
 		console.log("req.body: ", req.body);
 		let createdRecipe = new Recipe({
-			recipeTitle: req.body.recipeTitle,
-			recipePicture: req.body.recipePicture,
-			recipeDate: req.body.recipeDate,
-			recipeArea: req.body.recipeArea,
-			recipeCategory: req.body.recipeCategory,
-			recipeIngredient1: req.body.recipeIngredient1,
-			recipeIngredient2: req.body.recipeIngredient2,
-			recipeIngredient3: req.body.recipeIngredient3,
-			recipeIngredient4: req.body.recipeIngredient4,
-			recipeIngredient5: req.body.recipeIngredient5,
-			recipeIngredient6: req.body.recipeIngredient6,
-			recipeIngredient7: req.body.recipeIngredient7,
-			recipeIngredient8: req.body.recipeIngredient8,
-			recipeIngredient9: req.body.recipeIngredient9,
-			recipeIngredient10: req.body.recipeIngredient10,
-			recipeIngredient11: req.body.recipeIngredient11,
-			recipeIngredient12: req.body.recipeIngredient12,
-			recipeIngredient13: req.body.recipeIngredient13,
-			recipeIngredient14: req.body.recipeIngredient14,
-			recipeIngredient15: req.body.recipeIngredient15,
-			recipeIngredient16: req.body.recipeIngredient16,
-			recipeIngredient17: req.body.recipeIngredient17,
-			recipeIngredient18: req.body.recipeIngredient18,
-			recipeIngredient19: req.body.recipeIngredient19,
-			recipeIngredient20: req.body.recipeIngredient20,
-			recipeMeasure1: req.body.recipeMeasure1,
-			recipeMeasure2: req.body.recipeMeasure2,
-			recipeMeasure3: req.body.recipeMeasure3,
-			recipeMeasure4: req.body.recipeMeasure4,
-			recipeMeasure5: req.body.recipeMeasure5,
-			recipeMeasure6: req.body.recipeMeasure6,
-			recipeMeasure7: req.body.recipeMeasure7,
-			recipeMeasure8: req.body.recipeMeasure8,
-			recipeMeasure9: req.body.recipeMeasure9,
-			recipeMeasure10: req.body.recipeMeasure10,
-			recipeMeasure11: req.body.recipeMeasure11,
-			recipeMeasure12: req.body.recipeMeasure12,
-			recipeMeasure13: req.body.recipeMeasure13,
-			recipeMeasure14: req.body.recipeMeasure14,
-			recipeMeasure15: req.body.recipeMeasure15,
-			recipeMeasure16: req.body.recipeMeasure16,
-			recipeMeasure17: req.body.recipeMeasure17,
-			recipeMeasure18: req.body.recipeMeasure18,
-			recipeMeasure19: req.body.recipeMeasure19,
-			recipeMeasure20: req.body.recipeMeasure20,
-			recipeSource: req.body.recipeSource,
-			recipeYoutube: req.body.recipeYoutube,
-			recipeInstructions: req.body.recipeInstructions,
-			recipeOwner: foundUser._id,
+			strMeal: req.body.strMeal,
+			strMealThumb: req.body.strMealThumb,
+			strArea: req.body.strArea,
+			strCategory: req.body.strCategory,
+			strIngredient1: req.body.strIngredient1,
+			strIngredient2: req.body.strIngredient2,
+			strIngredient3: req.body.strIngredient3,
+			strIngredient4: req.body.strIngredient4,
+			strIngredient5: req.body.strIngredient5,
+			strIngredient6: req.body.strIngredient6,
+			strIngredient7: req.body.strIngredient7,
+			strIngredient8: req.body.strIngredient8,
+			strIngredient9: req.body.strIngredient9,
+			strIngredient10: req.body.strIngredient10,
+			strIngredient11: req.body.strIngredient11,
+			strIngredient12: req.body.strIngredient12,
+			strIngredient13: req.body.strIngredient13,
+			strIngredient14: req.body.strIngredient14,
+			strIngredient15: req.body.strIngredient15,
+			strIngredient16: req.body.strIngredient16,
+			strIngredient17: req.body.strIngredient17,
+			strIngredient18: req.body.strIngredient18,
+			strIngredient19: req.body.strIngredient19,
+			strIngredient20: req.body.strIngredient20,
+			strMeasure1: req.body.strMeasure1,
+			strMeasure2: req.body.strMeasure2,
+			strMeasure3: req.body.strMeasure3,
+			strMeasure4: req.body.strMeasure4,
+			strMeasure5: req.body.strMeasure5,
+			strMeasure6: req.body.strMeasure6,
+			strMeasure7: req.body.strMeasure7,
+			strMeasure8: req.body.strMeasure8,
+			strMeasure9: req.body.strMeasure9,
+			strMeasure10: req.body.strMeasure10,
+			strMeasure11: req.body.strMeasure11,
+			strMeasure12: req.body.strMeasure12,
+			strMeasure13: req.body.strMeasure13,
+			strMeasure14: req.body.strMeasure14,
+			strMeasure15: req.body.strMeasure15,
+			strMeasure16: req.body.strMeasure16,
+			strMeasure17: req.body.strMeasure17,
+			strMeasure18: req.body.strMeasure18,
+			strMeasure19: req.body.strMeasure19,
+			strMeasure20: req.body.strMeasure20,
+			strSource: req.body.strSource,
+			strYoutube: req.body.strYoutube,
+			strInstructions: req.body.strInstructions,
+			mealOwner: foundUser._id,
 		});
 
 		let savedRecipe = await createdRecipe.save();

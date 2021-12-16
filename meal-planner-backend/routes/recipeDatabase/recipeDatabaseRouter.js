@@ -16,7 +16,7 @@ router.post("/add-recipe", jwtMiddleware, addRecipe);
 
 router.get("/", jwtMiddleware, getAllRecipes);
 
-router.get("/get-recipe/:id", jwtMiddleware, getRecipe);
+router.get("/get-recipe/:recipeTitle", jwtMiddleware, getRecipe);
 
 router.put("/update-recipe/:id", jwtMiddleware, updateRecipe);
 
