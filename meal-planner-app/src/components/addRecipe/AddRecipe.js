@@ -5,8 +5,8 @@ import "./AddRecipe.css";
 
 function AddRecipe() {
 	const [newRecipe, setNewRecipe] = useState([]);
-	const [strTitle, setStrTitle] = useState("");
-	const [strThumb, setStrThumb] = useState("");
+	const [strMeal, setStrMeal] = useState("");
+	const [strMealThumb, setStrMealThumb] = useState("");
 	const [strArea, setStrArea] = useState("");
 	const [strCategory, setStrCategory] = useState("");
 	const [strIngredient1, setStrIngredient1] = useState("");
@@ -351,54 +351,54 @@ function AddRecipe() {
 			let payload = await axios.post(
 				"http://localhost:3001/api/recipeDatabase/add-recipe",
 				{
-					recipeTitle: strTitle,
-					recipePicture: strThumb,
-					recipeCategory: strCategory,
-					recipeArea: strArea,
-					recipeCategory: strCategory,
-					recipeIngredient1: strIngredient1,
-					recipeIngredient2: strIngredient2,
-					recipeIngredient3: strIngredient3,
-					recipeIngredient4: strIngredient4,
-					recipeIngredient5: strIngredient5,
-					recipeIngredient6: strIngredient6,
-					recipeIngredient7: strIngredient7,
-					recipeIngredient8: strIngredient8,
-					recipeIngredient9: strIngredient9,
-					recipeIngredient10: strIngredient10,
-					recipeIngredient11: strIngredient11,
-					recipeIngredient12: strIngredient12,
-					recipeIngredient13: strIngredient13,
-					recipeIngredient14: strIngredient14,
-					recipeIngredient15: strIngredient15,
-					recipeIngredient16: strIngredient16,
-					recipeIngredient17: strIngredient17,
-					recipeIngredient18: strIngredient18,
-					recipeIngredient19: strIngredient19,
-					recipeIngredient20: strIngredient20,
-					recipeMeasure1: strMeasure1,
-					recipeMeasure2: strMeasure2,
-					recipeMeasure3: strMeasure3,
-					recipeMeasure4: strMeasure4,
-					recipeMeasure5: strMeasure5,
-					recipeMeasure6: strMeasure6,
-					recipeMeasure7: strMeasure7,
-					recipeMeasure8: strMeasure8,
-					recipeMeasure9: strMeasure9,
-					recipeMeasure10: strMeasure10,
-					recipeMeasure11: strMeasure11,
-					recipeMeasure12: strMeasure12,
-					recipeMeasure13: strMeasure13,
-					recipeMeasure14: strMeasure14,
-					recipeMeasure15: strMeasure15,
-					recipeMeasure16: strMeasure16,
-					recipeMeasure17: strMeasure17,
-					recipeMeasure18: strMeasure18,
-					recipeMeasure19: strMeasure19,
-					recipeMeasure20: strMeasure20,
-					recipeSource: strSource,
-					recipeYoutube: strYoutube,
-					recipeInstructions: strInstructions,
+					strMeal: strMeal,
+					strMealThumb: strMealThumb,
+					strCategory: strCategory,
+					strArea: strArea,
+					strCategory: strCategory,
+					strIngredient1: strIngredient1,
+					strIngredient2: strIngredient2,
+					strIngredient3: strIngredient3,
+					strIngredient4: strIngredient4,
+					strIngredient5: strIngredient5,
+					strIngredient6: strIngredient6,
+					strIngredient7: strIngredient7,
+					strIngredient8: strIngredient8,
+					strIngredient9: strIngredient9,
+					strIngredient10: strIngredient10,
+					strIngredient11: strIngredient11,
+					strIngredient12: strIngredient12,
+					strIngredient13: strIngredient13,
+					strIngredient14: strIngredient14,
+					strIngredient15: strIngredient15,
+					strIngredient16: strIngredient16,
+					strIngredient17: strIngredient17,
+					strIngredient18: strIngredient18,
+					strIngredient19: strIngredient19,
+					strIngredient20: strIngredient20,
+					strMeasure1: strMeasure1,
+					strMeasure2: strMeasure2,
+					strMeasure3: strMeasure3,
+					strMeasure4: strMeasure4,
+					strMeasure5: strMeasure5,
+					strMeasure6: strMeasure6,
+					strMeasure7: strMeasure7,
+					strMeasure8: strMeasure8,
+					strMeasure9: strMeasure9,
+					strMeasure10: strMeasure10,
+					strMeasure11: strMeasure11,
+					strMeasure12: strMeasure12,
+					strMeasure13: strMeasure13,
+					strMeasure14: strMeasure14,
+					strMeasure15: strMeasure15,
+					strMeasure16: strMeasure16,
+					strMeasure17: strMeasure17,
+					strMeasure18: strMeasure18,
+					strMeasure19: strMeasure19,
+					strMeasure20: strMeasure20,
+					strSource: strSource,
+					strYoutube: strYoutube,
+					strInstructions: strInstructions,
 				},
 				{
 					headers: {
@@ -547,13 +547,13 @@ function AddRecipe() {
 					type="text"
 					className="recipeName"
 					placeholder="Recipe Name"
-					onChange={(event) => setStrTitle(event.target.value)}
+					onChange={(event) => setStrMeal(event.target.value)}
 				></input>
 				<input
 					type="text"
 					className="imageLocation"
 					placeholder="image location (ie https://myimage.com)"
-					onChange={(event) => setStrThumb(event.target.value)}
+					onChange={(event) => setStrMealThumb(event.target.value)}
 				></input>
 			</div>
 			<div className="type-area">

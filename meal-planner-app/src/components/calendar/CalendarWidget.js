@@ -27,6 +27,7 @@ const {getRecipe, getMeals, updateMeal, deleteMeals, meals} = useContext(RecipeC
   return (
     <div className="main">
 			{meals.map((item) => {
+				console.log(meals)
         return (
 					<>
 						<div className="calendar">
@@ -47,7 +48,7 @@ const {getRecipe, getMeals, updateMeal, deleteMeals, meals} = useContext(RecipeC
 								<div className="imgDiv">
 									<img
 										className="scheduleImg"
-										src={`${item.mealPicture}/preview`}
+										src={`${item.mealPicture}`}
 										alt="preview thumbnail"
 									></img>
 								</div>
