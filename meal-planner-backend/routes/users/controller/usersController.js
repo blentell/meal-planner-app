@@ -8,8 +8,8 @@ async function getUserInfo(req, res, next) {
 	try {
 		const decodedData = res.locals.decodedData;
 		const foundUser = await User.findOne({ email: decodedData.email }).populate(
-			"favoriteMovies",
-			"-movieOwner -_v"
+			"mealList",
+			"-mealOwner -_v"
 		);
 		res.json({ message: "success", payload: foundUser });
 	} catch (e) {
