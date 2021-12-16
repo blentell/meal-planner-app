@@ -15,6 +15,11 @@
   display: flex;
   flex-direction: column;
 }
+.type-area{
+  display: flex;
+  flex-direction: row;
+}
+
 .instructionInput{
   width: 80%;
   min-height: 100px;
@@ -22,8 +27,12 @@
   margin-top: 5px;
   margin-bottom: 5px;
 }
-
-.imageLocation, .mealType, .recipeName{
+.mealType, .mealArea{
+  text-align: center;
+  margin-bottom: 5px;
+  width: 30vw;
+}
+.imageLocation, .recipeName{
   width: 60vw;
   text-align: center;
   margin-bottom: 5px;

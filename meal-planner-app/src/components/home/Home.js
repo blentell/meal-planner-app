@@ -19,13 +19,13 @@ function Home() {
 	return (
     <div className="homePage">      
 			<div className="home">
-				<img className="tasty" src={data}></img>
+				<img className="tasty" src={data} alt="Random food"></img>
 			</div>
 			<div>
 				<h1 className="text">Plan out your daily meals!</h1>
 			</div>
 			<div className="logoContainer">
-				<img className="logo" src="../../images/Meal-App-Logo.jpg"></img>
+				<img className="logo" src="../../images/Meal-App-Logo.jpg" alt="App Logo"></img>
 			</div>
 		</div>
 	);

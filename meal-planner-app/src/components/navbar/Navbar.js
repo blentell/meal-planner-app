@@ -16,7 +16,7 @@ function Nav({ user, setUser}) {
 	let linkTitle5 = user ? "+Recipes" : "";
 	let link5 = user ? "/protected-home/add-recipes" : "/sign-in";
 	let logoutButton = user ? logout : () => { };
-	const { title, handleSearchChange, results, searching } = useContext(SearchContext);
+	const { handleSearchChange, results, searching } = useContext(SearchContext);
 	
 
 	function logout() {
@@ -28,7 +28,7 @@ function Nav({ user, setUser}) {
 	return (
 		<nav className="navbar">
 			<div className="container">
-				<NavLink exact activeClassName="active" to="/" className="navbar-brand">
+				<NavLink activeclassname="active" to="/" className="navbar-brand">
 					Home
 				</NavLink>
 				<div className="navbar-collapse" id="navbarNav">
