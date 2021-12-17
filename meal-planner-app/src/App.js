@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import axios from "axios";
@@ -11,7 +11,6 @@ import Home from "./components/home/Home";
 import Nav from "./components/navbar/Navbar";
 import Meals from "./components/meals/Meals";
 import AddRecipe from "./components/addRecipe/AddRecipe";
-
 import PrivateRoute from "./components/privateRoute/PrivateRoute";
 import {
 	SearchContext,
@@ -26,9 +25,7 @@ function App() {
 	const [user, setUser] = useState(null);
 	const [results, setResults] = useState([]);
 	const [results2, setResults2] = useState([]);
-	const [mealSelected, setMealSelected] = useState("");
 	const [searching, setSearching] = useState(false);
-	// const { recipe } = useContext(RecipeContext);
 	const [recipe, setRecipe] = useState([]);
 	const [meals, setMeals] = useState([]);
 
@@ -41,8 +38,6 @@ function App() {
 					authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
 				},
 			});
-
-			// payload.data.payload[0].mealDate.toString().split("T")[0];
 			setMeals(payload.data.payload);
 		} catch (e) {
 			console.log(e);
@@ -50,7 +45,6 @@ function App() {
 	}
 	async function deleteMeals(mealID) {
 		try {
-			// console.log("mealList: ", meals);
 			let url = `http://localhost:3001/api/meals/delete-meal/${mealID}`;
 
 			let payload = await axios.delete(
@@ -67,7 +61,6 @@ function App() {
 			let filteredMealArray = newMeal.filter(
 				(item) => item._id !== payload.data.payload._id
 			);
-			//console.log("deletePayload: ", payload.data.payload);
 			setMeals(filteredMealArray);
 		} catch (e) {
 			console.log(e);
@@ -105,7 +98,6 @@ function App() {
 			});
 			let data = payload.data.payload;
 			setRecipe(data);
-			console.log("setRecipe: ", data);
 		} catch (e) {
 			console.log(e);
 		}
@@ -120,22 +112,20 @@ function App() {
 		setResults(data.meals || []);
 
 		const response2 = await fetch(
-				`http://localhost:3001/api/recipeDatabase/get-recipe/${inputValue}`,
-				{
-					method: "GET",
-					headers: {
-						authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
-					},
-				}
-			)
-			const data2 = await response2.json();			
-		setResults2(data2.payload || [])
+			`http://localhost:3001/api/recipeDatabase/get-recipe/${inputValue}`,
+			{
+				method: "GET",
+				headers: {
+					authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+				},
+			}
+		);
+		const data2 = await response2.json();
+		setResults2(data2.payload || []);
 		setSearching(true);
-
 	}
 
 	async function handleMealSelected(mealSelected) {
-		console.log("mealSelected: ", mealSelected);
 		setSearching(false);
 		try {
 			let payload = await axios.post(
@@ -220,7 +210,7 @@ function App() {
 		updateMeal,
 		deleteMeals,
 	};
-	const newrecipeContextValue = {};
+	const newRecipeContextValue = {};
 
 	useEffect(() => {
 		let jwtToken = window.localStorage.getItem("jwtToken");
@@ -274,7 +264,7 @@ function App() {
 						path="/protected-home/add-recipes"
 						element={
 							<PrivateRoute>
-								<NewRecipeContext.Provider value={newrecipeContextValue}>
+								<NewRecipeContext.Provider value={newRecipeContextValue}>
 									<AddRecipe />
 								</NewRecipeContext.Provider>
 							</PrivateRoute>
