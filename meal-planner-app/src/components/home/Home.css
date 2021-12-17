@@ -43,15 +43,52 @@
 @media screen and (min-width: 900px) {
   .homePage{
   min-height: 82.3vh;
-  background-color: #C59F96;
 }
 .tasty{
- margin-top: 20px;
  width: 25%;
  height: 400px; 
 }
 .logo {
   width: 20%;
   height: 350px;
+}
+}
+@media screen and (min-width: 1280px) {
+  .homePage{
+  min-height: 75.9vh;
+}
+.tasty{
+ width: 20%;
+ height: 250px; 
+}
+.logo {
+  width: 15%;
+  height: 200px;
+}
+}
+@media screen and (min-width: 1440px) {
+  .homePage{
+  min-height: 78.6vh;
+}
+.tasty{
+ width: 20%;
+ height: 300px; 
+}
+.logo {
+  width: 15%;
+  height: 250px;
+}
+}
+@media screen and (min-width: 1920px) {
+  .homePage{
+  min-height: 82.2vh;
+}
+.tasty{
+ width: 25%;
+ height: 400px; 
+}
+.logo {
+  width: 20%;
+  height: 300px;
 }
 }

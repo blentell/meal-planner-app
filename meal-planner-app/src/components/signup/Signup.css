@@ -1,8 +1,8 @@
 .form-div-signup {
   display: flex;
   align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   background-color: #C59F96;
   height: 71.7vh;  
 }
@@ -44,5 +44,17 @@
 
   .form-div-signup {
     min-height: 74.8vh;
+  }
+}
+@media screen and (min-width: 1280px) {
+
+  .form-div-signup {
+    min-height: 73.5vh;
+  }
+}
+@media screen and (min-width: 1440px) {
+
+  .form-div-signup {
+    min-height: 76.5vh;
   }
 }

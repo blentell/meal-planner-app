@@ -96,3 +96,29 @@
   font-size: 1.2rem;
 }
 }
+@media screen and (min-width: 1280px) {
+  .main {
+  min-height: 74.8vh;
+}
+.title{
+  width: 960px;
+  font-size: 24px;
+}
+
+}
+@media screen and (min-width: 1440px) {
+  .main {
+  min-height: 77.5vh;
+}
+.title{
+  width: 1120px;
+}
+}
+@media screen and (min-width: 1920px) {
+  .main {
+  min-height: 82.3vh;
+}
+.title{
+  width: 1570px;
+}
+}

@@ -47,3 +47,15 @@
     min-height: 78.5vh;
   }
 }
+@media screen and (min-width: 1280px) {
+
+  .form-div-signin {
+    min-height: 71vh;
+  }
+}
+@media screen and (min-width: 1440px) {
+
+  .form-div-signin {
+    min-height: 74.3vh;
+  }
+}

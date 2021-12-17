@@ -35,11 +35,28 @@ list-style-type: none;
 .instructions{
   width: 80%;
   margin: 15px;
-  min-height: 225px; 
 }
 @media screen and (min-width: 440px) {
 
  .currentRecipe{
    min-height: 82.2vh;
+ }
+}
+@media screen and (min-width: 1280px) {
+
+ .currentRecipe{
+   min-height: 76vh;
+ }
+}
+@media screen and (min-width: 1440px) {
+
+ .currentRecipe{
+   min-height: 78.7vh;
+ }
+}
+@media screen and (min-width: 1920px) {
+
+ .currentRecipe{
+   min-height: 82.3vh;
  }
 }
