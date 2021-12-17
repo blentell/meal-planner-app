@@ -1,11 +1,13 @@
 .homePage{
   min-height: 79.3vh;
   background-color: #C59F96;
+  position: relative;
+  z-index: 1;
 }
 .tasty{
  margin-top: 20px;
  width: 90%;
- height: 50%;
+ height: 45%;
 }
 
 .home {
@@ -23,8 +25,8 @@
   align-self: center;
 }
 .logo {
-  width: 60%;
-  height: 250px;
+  width: 55%;
+  height: 240px;
 }
 @media screen and (min-width: 440px) {
   .homePage{

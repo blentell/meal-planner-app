@@ -8,6 +8,9 @@
   width: 100%;
   background-image: linear-gradient(#AF7B6E, #C59F96);
 }
+.calendar:hover {
+  background-image: linear-gradient(#e29f8f, #f0c2b8);
+}
 
 .scheduleImg{
   height: 50px;
@@ -28,7 +31,7 @@
 .dateInput{    
   width: 77px;
   font-size: .8rem;  
-    margin-top: 5px;
+  margin-top: 5px;
   margin-bottom: 5px;  
 }
 
@@ -37,8 +40,12 @@
   justify-self: left; 
   margin-left: 5px;
   height: 50px;
-    margin-top: 5px;
+  margin-top: 5px;
   margin-bottom: 5px;
+  background-color: #BD7A75;
+}
+.delete:hover{
+  background-color: #AF5F5A;
 }
 .inputDiv{
   display: flex;

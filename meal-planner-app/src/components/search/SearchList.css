@@ -14,7 +14,13 @@ input:focus {
 }
 
 .results {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  position: absolute;  
+  top: 56%;
+  left: 57%;
+  transform: translate(-50%, -50%);
+  z-index:100;
   padding: 0;
   margin: 0;
   width: 60%;
@@ -22,16 +28,17 @@ input:focus {
   border-width: 1px;
   border-style: solid;
   border-color: #cbcfe2 #c8cee7 #c4c7d7;
+  background-color: #69433A;
+  opacity: 90%;
 }
 
 .results li {
   display: flex;
-  position: relative;
-  z-index: 3;
   align-items: center;
   padding: 5px;
-  border-bottom: 1px solid rgba(88, 85, 85, 0.3);
+  border-bottom: 1px solid white;
   cursor: pointer;
+  color: #EDDBD8;
 }
 
 .results li img {
@@ -40,5 +47,30 @@ input:focus {
 }
 
 .results li:hover {
-  background: rgba(88, 85, 85, 0.1);
+  background: rgba(252, 240, 240, 0.192);
+}
+
+@media screen and (min-width: 440px){
+  .results {  
+  top: 48%;
+  left: 53%;   
+}
+}
+@media screen and (min-width: 1280px){
+  .results {  
+  top: 65%;
+  left: 53%; 
+}
+}
+@media screen and (min-width: 1440px){
+  .results {  
+  top: 58%;
+  left: 53%; 
+}
+}
+@media screen and (min-width: 1920px){
+  .results {  
+  top: 48%;
+  left: 53%; 
+}
 }
