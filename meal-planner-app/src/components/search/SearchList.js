@@ -4,7 +4,6 @@ import "./SearchList.css"
 function SearchList() {
   const { results, results2, handleMealSelected } = useContext(SearchContext);
   function showMealList() {
-    console.log("results: ", results)
     return results.map((item, index) => {
       return (
 				<li key={index} onClick={() => handleMealSelected(item)}>
@@ -15,7 +14,6 @@ function SearchList() {
     })
   }
   function showMealList2() {
-    console.log("results2: ", results2)
 		return results2.map((item, index) => {
 			return (
 				<li key={index} onClick={() => handleMealSelected(item)}>

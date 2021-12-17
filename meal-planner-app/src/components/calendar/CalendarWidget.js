@@ -27,7 +27,6 @@ const {getRecipe, getMeals, updateMeal, deleteMeals, meals} = useContext(RecipeC
   return (
     <div className="main">
 			{meals.map((item) => {
-				console.log(meals)
         return (
 					<>
 						<div className="calendar">

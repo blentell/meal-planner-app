@@ -325,28 +325,26 @@ function AddRecipe() {
 
 	async function addNewRecipe() {
 		setStrMeasure1(`${strMeasure1a} ${strMeasure1b}`);
-			setStrMeasure2(`${strMeasure2a} ${strMeasure2b}`);
-				setStrMeasure3(`${strMeasure3a} ${strMeasure3b}`);
-			setStrMeasure4(`${strMeasure4a} ${strMeasure4b}`);
-			setStrMeasure5(`${strMeasure5a} ${strMeasure5b}`);
-			setStrMeasure6(`${strMeasure6a} ${strMeasure6b}`);
-			setStrMeasure7(`${strMeasure7a} ${strMeasure7b}`);
-			setStrMeasure8(`${strMeasure8a} ${strMeasure8b}`);
-			setStrMeasure9(`${strMeasure9a} ${strMeasure9b}`);
-			setStrMeasure10(`${strMeasure10a} ${strMeasure10b}`);
-			setStrMeasure11(`${strMeasure11a} ${strMeasure11b}`);
-			setStrMeasure12(`${strMeasure12a} ${strMeasure12b}`);
-			setStrMeasure13(`${strMeasure13a} ${strMeasure13b}`);
-			setStrMeasure14(`${strMeasure14a} ${strMeasure14b}`);
-			setStrMeasure15(`${strMeasure15a} ${strMeasure15b}`);
-			setStrMeasure16(`${strMeasure16a} ${strMeasure16b}`);
-			setStrMeasure17(`${strMeasure17a} ${strMeasure17b}`);
-			setStrMeasure18(`${strMeasure18a} ${strMeasure18b}`);
-			setStrMeasure19(`${strMeasure19a} ${strMeasure19b}`);
-			setStrMeasure20(`${strMeasure20a} ${strMeasure20b}`);
-		console.log(strMeasure1);
-		console.log(strMeasure2);
-		console.log(strMeasure3)
+		setStrMeasure2(`${strMeasure2a} ${strMeasure2b}`);
+		setStrMeasure3(`${strMeasure3a} ${strMeasure3b}`);
+		setStrMeasure4(`${strMeasure4a} ${strMeasure4b}`);
+		setStrMeasure5(`${strMeasure5a} ${strMeasure5b}`);
+		setStrMeasure6(`${strMeasure6a} ${strMeasure6b}`);
+		setStrMeasure7(`${strMeasure7a} ${strMeasure7b}`);
+		setStrMeasure8(`${strMeasure8a} ${strMeasure8b}`);
+		setStrMeasure9(`${strMeasure9a} ${strMeasure9b}`);
+		setStrMeasure10(`${strMeasure10a} ${strMeasure10b}`);
+		setStrMeasure11(`${strMeasure11a} ${strMeasure11b}`);
+		setStrMeasure12(`${strMeasure12a} ${strMeasure12b}`);
+		setStrMeasure13(`${strMeasure13a} ${strMeasure13b}`);
+		setStrMeasure14(`${strMeasure14a} ${strMeasure14b}`);
+		setStrMeasure15(`${strMeasure15a} ${strMeasure15b}`);
+		setStrMeasure16(`${strMeasure16a} ${strMeasure16b}`);
+		setStrMeasure17(`${strMeasure17a} ${strMeasure17b}`);
+		setStrMeasure18(`${strMeasure18a} ${strMeasure18b}`);
+		setStrMeasure19(`${strMeasure19a} ${strMeasure19b}`);
+		setStrMeasure20(`${strMeasure20a} ${strMeasure20b}`);
+
 		try {
 			let payload = await axios.post(
 				"http://localhost:3001/api/recipeDatabase/add-recipe",
@@ -406,12 +404,8 @@ function AddRecipe() {
 					},
 				}
 			);
-			console.log("recipePayload: ", payload);
 			let newRecipeArray = [...newRecipe, payload.data.payload];
 			setNewRecipe(newRecipeArray);
-			console.log("newRecipe: ", newRecipe);
-			// const resetInput = document.querySelector(".recipeName");
-			// resetInput.value = "";
 		} catch (e) {
 			console.log(e.response);
 		}
@@ -424,120 +418,120 @@ function AddRecipe() {
 		setStrMeasure1b(newMeasure2);
 	};
 
-		const changeMeasure2a = (newMeasure3) => {
-			setStrMeasure2a(newMeasure3);
-		};
-		const changeMeasure2b = (newMeasure4) => {
-			setStrMeasure2b(newMeasure4);
-		};
-			const changeMeasure3a = (newMeasure5) => {
-				setStrMeasure3a(newMeasure5);
-			};
-			const changeMeasure3b = (newMeasure6) => {
-				setStrMeasure3b(newMeasure6);
+	const changeMeasure2a = (newMeasure3) => {
+		setStrMeasure2a(newMeasure3);
 	};
-		const changeMeasure4a = (newMeasure7) => {
-			setStrMeasure4a(newMeasure7);
-		};
-		const changeMeasure4b = (newMeasure8) => {
-			setStrMeasure4b(newMeasure8);
+	const changeMeasure2b = (newMeasure4) => {
+		setStrMeasure2b(newMeasure4);
 	};
-		const changeMeasure5a = (newMeasure9) => {
-			setStrMeasure5a(newMeasure9);
-		};
-		const changeMeasure5b = (newMeasure10) => {
-			setStrMeasure5b(newMeasure10);
+	const changeMeasure3a = (newMeasure5) => {
+		setStrMeasure3a(newMeasure5);
 	};
-		const changeMeasure6a = (newMeasure11) => {
-			setStrMeasure6a(newMeasure11);
-		};
-		const changeMeasure6b = (newMeasure12) => {
-			setStrMeasure6b(newMeasure12);
+	const changeMeasure3b = (newMeasure6) => {
+		setStrMeasure3b(newMeasure6);
 	};
-		const changeMeasure7a = (newMeasure13) => {
-			setStrMeasure7a(newMeasure13);
-		};
-		const changeMeasure7b = (newMeasure14) => {
-			setStrMeasure7b(newMeasure14);
+	const changeMeasure4a = (newMeasure7) => {
+		setStrMeasure4a(newMeasure7);
 	};
-		const changeMeasure8a = (newMeasure15) => {
-			setStrMeasure8a(newMeasure15);
-		};
-		const changeMeasure8b = (newMeasure16) => {
-			setStrMeasure8b(newMeasure16);
+	const changeMeasure4b = (newMeasure8) => {
+		setStrMeasure4b(newMeasure8);
 	};
-		const changeMeasure9a = (newMeasure17) => {
-			setStrMeasure9a(newMeasure17);
-		};
-		const changeMeasure9b = (newMeasure18) => {
-			setStrMeasure9b(newMeasure18);
+	const changeMeasure5a = (newMeasure9) => {
+		setStrMeasure5a(newMeasure9);
 	};
-		const changeMeasure10a = (newMeasure19) => {
-			setStrMeasure10a(newMeasure19);
-		};
-		const changeMeasure10b = (newMeasure20) => {
-			setStrMeasure10b(newMeasure20);
+	const changeMeasure5b = (newMeasure10) => {
+		setStrMeasure5b(newMeasure10);
 	};
-		const changeMeasure11a = (newMeasure21) => {
-			setStrMeasure11a(newMeasure21);
-		};
-		const changeMeasure11b = (newMeasure22) => {
-			setStrMeasure11b(newMeasure22);
+	const changeMeasure6a = (newMeasure11) => {
+		setStrMeasure6a(newMeasure11);
 	};
-		const changeMeasure12a = (newMeasure23) => {
-			setStrMeasure12a(newMeasure23);
-		};
-		const changeMeasure12b = (newMeasure24) => {
-			setStrMeasure12b(newMeasure24);
+	const changeMeasure6b = (newMeasure12) => {
+		setStrMeasure6b(newMeasure12);
 	};
-		const changeMeasure13a = (newMeasure25) => {
-			setStrMeasure13a(newMeasure25);
-		};
-		const changeMeasure13b = (newMeasure26) => {
-			setStrMeasure13b(newMeasure26);
+	const changeMeasure7a = (newMeasure13) => {
+		setStrMeasure7a(newMeasure13);
 	};
-		const changeMeasure14a = (newMeasure27) => {
-			setStrMeasure14a(newMeasure27);
-		};
-		const changeMeasure14b = (newMeasure28) => {
-			setStrMeasure14b(newMeasure28);
+	const changeMeasure7b = (newMeasure14) => {
+		setStrMeasure7b(newMeasure14);
 	};
-		const changeMeasure15a = (newMeasure29) => {
-			setStrMeasure15a(newMeasure29);
-		};
-		const changeMeasure15b = (newMeasure30) => {
-			setStrMeasure15b(newMeasure30);
+	const changeMeasure8a = (newMeasure15) => {
+		setStrMeasure8a(newMeasure15);
 	};
-		const changeMeasure16a = (newMeasure31) => {
-			setStrMeasure16a(newMeasure31);
-		};
-		const changeMeasure16b = (newMeasure32) => {
-			setStrMeasure16b(newMeasure32);
+	const changeMeasure8b = (newMeasure16) => {
+		setStrMeasure8b(newMeasure16);
 	};
-		const changeMeasure17a = (newMeasure33) => {
-			setStrMeasure17a(newMeasure33);
-		};
-		const changeMeasure17b = (newMeasure34) => {
-			setStrMeasure17b(newMeasure34);
+	const changeMeasure9a = (newMeasure17) => {
+		setStrMeasure9a(newMeasure17);
 	};
-		const changeMeasure18a = (newMeasure35) => {
-			setStrMeasure18a(newMeasure35);
-		};
-		const changeMeasure18b = (newMeasure36) => {
-			setStrMeasure18b(newMeasure36);
+	const changeMeasure9b = (newMeasure18) => {
+		setStrMeasure9b(newMeasure18);
 	};
-		const changeMeasure19a = (newMeasure37) => {
-			setStrMeasure19a(newMeasure37);
-		};
-		const changeMeasure19b = (newMeasure38) => {
-			setStrMeasure19b(newMeasure38);
+	const changeMeasure10a = (newMeasure19) => {
+		setStrMeasure10a(newMeasure19);
 	};
-		const changeMeasure20a = (newMeasure39) => {
-			setStrMeasure20a(newMeasure39);
-		};
-		const changeMeasure20b = (newMeasure40) => {
-			setStrMeasure20b(newMeasure40);
-		};
+	const changeMeasure10b = (newMeasure20) => {
+		setStrMeasure10b(newMeasure20);
+	};
+	const changeMeasure11a = (newMeasure21) => {
+		setStrMeasure11a(newMeasure21);
+	};
+	const changeMeasure11b = (newMeasure22) => {
+		setStrMeasure11b(newMeasure22);
+	};
+	const changeMeasure12a = (newMeasure23) => {
+		setStrMeasure12a(newMeasure23);
+	};
+	const changeMeasure12b = (newMeasure24) => {
+		setStrMeasure12b(newMeasure24);
+	};
+	const changeMeasure13a = (newMeasure25) => {
+		setStrMeasure13a(newMeasure25);
+	};
+	const changeMeasure13b = (newMeasure26) => {
+		setStrMeasure13b(newMeasure26);
+	};
+	const changeMeasure14a = (newMeasure27) => {
+		setStrMeasure14a(newMeasure27);
+	};
+	const changeMeasure14b = (newMeasure28) => {
+		setStrMeasure14b(newMeasure28);
+	};
+	const changeMeasure15a = (newMeasure29) => {
+		setStrMeasure15a(newMeasure29);
+	};
+	const changeMeasure15b = (newMeasure30) => {
+		setStrMeasure15b(newMeasure30);
+	};
+	const changeMeasure16a = (newMeasure31) => {
+		setStrMeasure16a(newMeasure31);
+	};
+	const changeMeasure16b = (newMeasure32) => {
+		setStrMeasure16b(newMeasure32);
+	};
+	const changeMeasure17a = (newMeasure33) => {
+		setStrMeasure17a(newMeasure33);
+	};
+	const changeMeasure17b = (newMeasure34) => {
+		setStrMeasure17b(newMeasure34);
+	};
+	const changeMeasure18a = (newMeasure35) => {
+		setStrMeasure18a(newMeasure35);
+	};
+	const changeMeasure18b = (newMeasure36) => {
+		setStrMeasure18b(newMeasure36);
+	};
+	const changeMeasure19a = (newMeasure37) => {
+		setStrMeasure19a(newMeasure37);
+	};
+	const changeMeasure19b = (newMeasure38) => {
+		setStrMeasure19b(newMeasure38);
+	};
+	const changeMeasure20a = (newMeasure39) => {
+		setStrMeasure20a(newMeasure39);
+	};
+	const changeMeasure20b = (newMeasure40) => {
+		setStrMeasure20b(newMeasure40);
+	};
 
 	return (
 		<div className="newRecipe">

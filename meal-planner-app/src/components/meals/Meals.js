@@ -6,8 +6,6 @@ import "./Meals.css";
 function Meals() {
 	const { recipe } = useContext(RecipeContext);
 
-	console.log("Meal: ", [recipe])
-
 	return (
 		<div className="currentRecipe">
 
