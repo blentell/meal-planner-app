@@ -24,10 +24,11 @@ function SearchList() {
 		});
 	}
   return (
-    <div className="results">{showMealList()}{showMealList2()}
-      
-    </div>
-  )
+		<div className="results">
+			{showMealList2()}
+			{showMealList()}
+		</div>
+	);
 }
 
 export default SearchList
