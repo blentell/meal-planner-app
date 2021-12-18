@@ -7,14 +7,14 @@ const errorHandler = require("../../utils/errorHandler/errorHandler");
 async function getAllRecipes(req, res) {
 	try {
 		const decodedData = res.locals.decodedData;
-		console.log(decodedData);
+	
 		let foundUser = await User.findOne({ email: decodedData.email }).populate(
 			"recipeList",
 			"-recipeOwner -_v"
 		);
-		console.log("foundUser: ", foundUser);
+		
 		let foundRecipes = await Recipe.find({ recipeOwner: foundUser._id });
-		console.log("foundRecipes: ", foundRecipes);
+	
 		res.json({ message: "success", payload: foundRecipes });
 	} catch (e) {
 		console.log(e);
@@ -28,12 +28,12 @@ async function getRecipe(req, res) {
 			"recipeList",
 			"-recipeOwner -_v"
 		);
-		console.log("foundUser: ", foundUser);
+	
 		let userRecipeArray = foundUser.recipeList;
 		let filterArray = userRecipeArray.filter(
 			(item) => item._id.toString() !== req.params.id
 		);
-		console.log(filterArray);
+		
 		foundUser.recipeList = filterArray;
 		await foundUser.save();
 
@@ -45,7 +45,7 @@ async function getRecipe(req, res) {
 				$regex: new RegExp(recipeVariable, "i"),
 			},
 		});
-		console.log("foundRecipe: ", foundRecipe);
+		
 		res.json({
 			message: "success",
 			payload: foundRecipe,
@@ -65,8 +65,8 @@ async function addRecipe(req, res) {
 			"recipeList",
 			"-recipeOwner -_v"
 		);;
-		console.log("req.body: ", req.body);
-		let createdRecipe = new Recipe({
+	
+		let createdRecipe = new Recipes({
 			strMeal: req.body.strMeal,
 			strMealThumb: req.body.strMealThumb,
 			strArea: req.body.strArea,
@@ -122,7 +122,7 @@ async function addRecipe(req, res) {
 		foundUser.recipeList.push(savedRecipe._id);
 
 		await foundUser.save();
-		console.log("savedRecipe: ", savedRecipe);
+		
 		res.json({ message: "success", payload: savedRecipe });
 	} catch (e) {
 		res.status(500).json(errorHandler(e));
