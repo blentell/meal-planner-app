@@ -16,9 +16,8 @@ input:focus {
 .results {
   display: block;
   position: absolute;  
-  top: 58%;
-  left: 57%;
-  transform: translate(-50%, -50%);
+  top: 11%;
+  left: 28%;
   z-index:100;
   padding: 0;
   margin: 0;
@@ -51,25 +50,28 @@ input:focus {
 
 @media screen and (min-width: 440px){
   .results {  
-  top: 48%;
-  left: 53%;   
+  top: 9.5%;
+  left: 25%;   
 }
 }
 @media screen and (min-width: 1280px){
   .results {  
-  top: 65%;
-  left: 53%; 
+  top: 12.8%;
+  left: 32%; 
+  width: 40%;
 }
 }
 @media screen and (min-width: 1440px){
   .results {  
-  top: 58%;
-  left: 53%; 
+  top: 11.5%;
+  left: 32%; 
+  width: 40%;
 }
 }
 @media screen and (min-width: 1920px){
   .results {  
-  top: 48%;
-  left: 53%; 
+  top: 9.5%;
+  left: 37%; 
+  width: 30%;
 }
 }
