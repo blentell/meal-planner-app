@@ -32,7 +32,7 @@ function Nav({ user, setUser}) {
 					Home
 				</NavLink>
 				<div className="navbar-collapse" id="navbarNav">
-					<ul className="navbar-nav">
+					<ul className="navbar-nav main-nav">
 						<li className="nav-item">
 							<NavLink to={link1} className="nav-link" aria-current="page">
 								{linkTitle1}

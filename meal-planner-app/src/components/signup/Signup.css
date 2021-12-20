@@ -58,3 +58,9 @@
     min-height: 76.5vh;
   }
 }
+@media screen and (min-width: 1920px) {
+
+  .form-div-signup {
+    min-height: 80.4vh;
+  }
+}
